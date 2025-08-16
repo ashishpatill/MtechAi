@@ -19,28 +19,18 @@ const courseData = {
     "modules": [
       {
         "name": "Decision Making",
-        "topics": ["Utility Theory", "Decision Networks", "POMDPs", "Game Theory"],
-        "lectures": "1-5"
+        "topics": ["Utility Theory and Functions", "Decision Networks", "Sequential Decision Problems"],
+        "lectures": "1-4"
       },
       {
-        "name": "Probabilistic Reasoning over Time", 
-        "topics": ["Hidden Markov Models", "Kalman Filtering", "Time Series"],
-        "lectures": "6-9"
+        "name": "Reinforcement Learning",
+        "topics": ["Basic Ideas and Applications", "Formalization, Markov Decision Processes", "Different forms of RL: Passive and Active", "Learning optimal strategies"],
+        "lectures": "5-8"
       },
       {
-        "name": "Knowledge Representation",
-        "topics": ["Information Extraction", "Ontology", "Situation Calculus"],
-        "lectures": "10-13"
-      },
-      {
-        "name": "Planning",
-        "topics": ["State Space Search", "Planning Graphs", "HTN Planning"],
-        "lectures": "14-16"
-      },
-      {
-        "name": "Embodied AI",
-        "topics": ["Visual Navigation", "AI Habitat", "Embodied Q&A"],
-        "lectures": "17-18"
+        "name": "Probabilistic Reasoning over Time",
+        "topics": ["POMDPs, Hidden Markov Models", "Time-series Analysis: Basic Concepts", "Kalman Filters", "Simple 1D and multidimensional filtering"],
+        "lectures": "9-12"
       }
     ]
   },

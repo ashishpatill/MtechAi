@@ -1,6 +1,6 @@
-# MTech AI Trimester 3 Dashboard
+# MTech AI Student Dashboard
 
-A comprehensive dashboard for MTech AI students at IIT Jodhpur to track their Trimester 3 coursework, schedules, and progress. Built as a modern, responsive web application with a clean and intuitive interface.
+A comprehensive dashboard for MTech AI students to track their coursework, schedules, and progress. Built as a modern, responsive web application with a clean and intuitive interface.
 
 ![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)
 ![Static Badge](https://img.shields.io/badge/Status-Active-blue)
@@ -12,20 +12,19 @@ Visit the live dashboard: **[https://ashishpatill.github.io/Mtech-Ai](https://as
 
 ## 📋 Overview
 
-This dashboard provides MTech AI Trimester 3 students with:
+This dashboard provides MTech AI students with:
 - **Weekly Schedule Tracking**: Complete overview of all course timings and meeting links
-- **Course Progress Monitoring**: Track lecture progress for all 6 courses
-- **Quick Access Links**: Direct links to Google Classroom codes and meeting platforms
+- **Course Progress Monitoring**: Track lecture progress for all courses
+- **Quick Access Links**: Direct links to learning platforms and resources
 - **Study Planner**: Personal study planning tool for weekdays
 - **Course Details**: Detailed information about each course including objectives, modules, and textbooks
 
 ## 🎯 Features
 
 ### 📅 Schedule Management
-- **Weekend-Only Classes**: All classes scheduled for Saturday and Sunday only
 - **Real-Time Schedule**: Today's and tomorrow's schedule at a glance
-- **Meeting Links**: Direct Google Meet links for active courses
-- **Course Status**: Clear status indicators (Active, Starting Soon, Pending)
+- **Meeting Links**: Direct links to course meetings
+- **Course Status**: Clear status indicators for course tracking
 
 ### 📊 Progress Tracking
 - **Lecture Progress**: Track completed lectures across all modules
@@ -182,16 +181,15 @@ This is a personal academic dashboard project. While contributions are welcome f
 
 ## 📄 Academic Integrity
 
-This dashboard is designed to help students stay organized and track their academic progress. All course information is based on verified data from IIT Jodhpur's official sources.
+This dashboard is designed to help students stay organized and track their academic progress.
 
-**Note**: Assignment tracking features are intentionally excluded until officially assigned by professors.
+**Note**: Assignment tracking features are intentionally excluded until officially assigned.
 
 ## 👨‍💻 Author
 
 **Ashish Pisey**
 - **Student ID**: G24AIT2158
-- **Program**: MTech AI, IIT Jodhpur
-- **Current Trimester**: 3 (August 2025)
+- **Program**: MTech AI
 
 ## 📞 Support
 

@@ -8,7 +8,7 @@ A comprehensive dashboard for MTech AI students to track their coursework, sched
 
 ## 🌐 Live Website
 
-Visit the live dashboard: **[https://ashishpatill.github.io/Mtech-Ai](https://ashishpatill.github.io/MtechAi)**
+Visit the live dashboard: **[https://ashishpatill.github.io/MtechAi](https://ashishpatill.github.io/MtechAi)**
 
 ## 📋 Overview
 
@@ -92,7 +92,7 @@ This dashboard provides MTech AI students with:
 ### Local Development
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/ashishpatill/Mtech-Ai.git
+   git clone https://github.com/ashishpatill/MtechAi.git
    cd Mtech-Ai
    ```
 

@@ -81,15 +81,7 @@ This dashboard provides MTech AI students with:
 - **Icons**: Font Awesome integration
 - **Deployment**: GitHub Pages for free hosting
 
-## 📁 Project Structure
 
-```
-Mtech-Ai/
-├── index.html          # Main dashboard page
-├── style.css           # Complete styling and responsive design
-├── app.js              # Application logic and interactivity
-└── README.md           # Project documentation
-```
 
 ## 🚀 Getting Started
 
@@ -147,43 +139,9 @@ The dashboard is built with CSS custom properties (variables) for easy customiza
 - ✅ Edge 90+
 - ✅ Mobile browsers (iOS Safari, Chrome Mobile)
 
-## 🔧 Features in Detail
 
-### Navigation System
-- **Smooth scrolling** between sections
-- **Active state indicators** for current section
-- **Keyboard navigation** support (Escape to close modals)
 
-### Progress Tracking
-- **Persistent state** (saved in browser localStorage)
-- **Progress visualization** with animated progress bars
-- **Detailed module tracking** with lecture counts
 
-### Study Planner
-- **Weekly view** with navigation between weeks
-- **Class integration** showing scheduled classes
-- **Personal study sessions** that you can customize
-
-### Course Details Modal
-- **Rich course information** including instructors, schedules, and objectives
-- **Module breakdown** with topics and lecture counts
-- **Recommended textbooks** and additional resources
-
-## 🤝 Contributing
-
-This is a personal academic dashboard project. While contributions are welcome for improvements, please note:
-
-1. **Fork** the repository
-2. **Create** a feature branch
-3. **Make** your changes
-4. **Test** thoroughly
-5. **Submit** a pull request
-
-## 📄 Academic Integrity
-
-This dashboard is designed to help students stay organized and track their academic progress.
-
-**Note**: Assignment tracking features are intentionally excluded until officially assigned.
 
 ## 👨‍💻 Author
 

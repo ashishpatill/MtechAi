@@ -1458,6 +1458,25 @@ select.form-control {
   font-family: var(--font-family-mono);
 }
 
+/* Classroom Links Styling */
+.classroom-link {
+  color: var(--color-teal-500);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(33, 128, 141, 0.1);
+  transition: all 0.2s ease;
+  font-family: var(--font-family-mono);
+  font-size: 0.9rem;
+}
+
+.classroom-link:hover {
+  background: var(--color-teal-500);
+  color: white;
+  text-decoration: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .header__content {

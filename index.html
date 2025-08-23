@@ -27,6 +27,7 @@
                 <li><button class="nav__btn" data-section="courses">Courses</button></li>
                 <li><button class="nav__btn" data-section="progress">Progress</button></li>
                 <li><button class="nav__btn" data-section="quick-links">Quick Links</button></li>
+                <li><button class="nav__btn" data-section="notes">Notes</button></li>
                 <li><button class="nav__btn" data-section="planner">Study Planner</button></li>
             </ul>
         </div>
@@ -251,19 +252,19 @@
                 <h2>Quick Access</h2>
                 <div class="quick-links-grid">
                     <div class="link-card">
-                        <h3>Confirmed Classroom Codes</h3>
+                        <h3>Google Classroom Links</h3>
                         <div class="classroom-codes">
                             <div class="code-item">
                                 <span class="course-name">Advanced AI</span>
-                                <span class="code">hijxvrwt</span>
+                                <a href="https://classroom.google.com/c/hijxvrwt" target="_blank" class="classroom-link">hijxvrwt</a>
                             </div>
                             <div class="code-item">
                                 <span class="course-name">Ethics & Professional Life</span>
-                                <span class="code">zqvcgcui</span>
+                                <a href="https://classroom.google.com/c/zqvcgcui" target="_blank" class="classroom-link">zqvcgcui</a>
                             </div>
                             <div class="code-item">
                                 <span class="course-name">Innovation & IP</span>
-                                <span class="code">zy3yovsw</span>
+                                <a href="https://classroom.google.com/c/zy3yovsw" target="_blank" class="classroom-link">zy3yovsw</a>
                             </div>
                         </div>
                     </div>
@@ -291,6 +292,54 @@
                             <a href="#" class="resource-link">Academic Calendar</a>
                             <a href="#" class="resource-link">Student Portal</a>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notes Section -->
+            <section id="notes" class="section">
+                <h2>Personal Notes</h2>
+                <div class="notes-note">
+                    <p><strong>Personal Study Notes:</strong> Create, edit, and organize your study notes. Notes are saved locally in your browser.</p>
+                </div>
+
+                <div class="notes-container">
+                    <div class="notes-form">
+                        <h3>Create New Note</h3>
+                        <form id="note-form">
+                            <div class="form-group">
+                                <input type="text" id="note-title" placeholder="Note Title" required>
+                            </div>
+                            <div class="form-group">
+                                <select id="note-category">
+                                    <option value="general">General</option>
+                                    <option value="lecture">Lecture Notes</option>
+                                    <option value="assignment">Assignment</option>
+                                    <option value="project">Project</option>
+                                    <option value="reminder">Reminder</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="note-content" placeholder="Write your note here..." rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn--primary">Add Note</button>
+                        </form>
+                    </div>
+
+                    <div class="notes-list">
+                        <h3>Your Notes</h3>
+                        <div class="notes-filter">
+                            <select id="filter-category">
+                                <option value="all">All Categories</option>
+                                <option value="general">General</option>
+                                <option value="lecture">Lecture Notes</option>
+                                <option value="assignment">Assignment</option>
+                                <option value="project">Project</option>
+                                <option value="reminder">Reminder</option>
+                            </select>
+                            <input type="text" id="search-notes" placeholder="Search notes...">
+                        </div>
+                        <div id="notes-display"></div>
                     </div>
                 </div>
             </section>

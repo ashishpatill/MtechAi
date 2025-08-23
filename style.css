@@ -1512,71 +1512,108 @@ select.form-control {
   gap: 1rem;
 }
 
-.note-card {
+.pdf-note-card {
   background: var(--color-white);
   border: 1px solid var(--color-gray-200);
   border-radius: 8px;
   padding: 1.25rem;
   transition: box-shadow 0.2s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
-.note-card:hover {
+.pdf-note-card:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.note-header h4 {
+.pdf-icon {
+  font-size: 2rem;
+  color: var(--color-teal-500);
+  flex-shrink: 0;
+}
+
+.pdf-info {
+  flex: 1;
+}
+
+.pdf-info h4 {
   margin: 0 0 0.5rem 0;
   color: var(--color-text);
   font-size: 1.1rem;
 }
 
-.note-meta {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  background: var(--color-bg-1);
-  color: var(--color-teal-600);
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
+.pdf-meta {
+  color: var(--color-slate-500);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
 }
 
-.note-content {
+.pdf-description {
   color: var(--color-text-secondary);
   line-height: 1.5;
-  margin-bottom: 1rem;
+  margin: 0;
 }
 
-.note-actions {
-  text-align: right;
+.pdf-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .btn--small {
   padding: 0.5rem 1rem;
   font-size: 0.85rem;
   border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  min-width: 100px;
 }
 
-.empty-state {
+.btn--outline {
+  background: transparent;
+  color: var(--color-teal-500);
+  border: 1px solid var(--color-teal-500);
+}
+
+.btn--outline:hover {
+  background: var(--color-teal-500);
+  color: white;
+}
+
+.no-notes {
   text-align: center;
   padding: 2rem;
   background: var(--color-cream-100);
   border-radius: 8px;
   border: 2px dashed var(--color-gray-300);
+  grid-column: 1 / -1;
 }
 
-.empty-state h4 {
+.no-notes h4 {
   color: var(--color-text);
   margin-bottom: 0.5rem;
 }
 
-.empty-state p {
+.no-notes p {
   color: var(--color-text-secondary);
-  margin-bottom: 0.5rem;
+  margin: 0;
   line-height: 1.5;
 }
 
-.empty-state strong {
-  color: var(--color-teal-600);
+/* Responsive design for PDF notes */
+@media (max-width: 768px) {
+  .pdf-note-card {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pdf-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
 }
 
 /* Responsive Design */

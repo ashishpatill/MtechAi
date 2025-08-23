@@ -152,8 +152,8 @@ The dashboard is built with CSS custom properties (variables) for easy customiza
 ## 📞 Support
 
 For questions or issues related to this dashboard:
-- Create an [Issue](https://github.com/ashishpatill/Mtech-Ai/issues) on GitHub
-- Check the [Discussions](https://github.com/ashishpatill/Mtech-Ai/discussions) section
+- Create an [Issue](https://github.com/ashishpatill/MtechAi/issues) on GitHub
+- Check the [Discussions](https://github.com/ashishpatill/MtechAi/discussions) section
 
 ## 📜 License
 

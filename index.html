@@ -298,48 +298,51 @@
 
             <!-- Notes Section -->
             <section id="notes" class="section">
-                <h2>Personal Notes</h2>
+                <h2>Student Shared Notes</h2>
                 <div class="notes-note">
-                    <p><strong>Personal Study Notes:</strong> Create, edit, and organize your study notes. Notes are saved locally in your browser.</p>
+                    <p><strong>Student-Contributed Study Materials:</strong> Download helpful notes and study materials shared by fellow students. All files are in PDF format.</p>
                 </div>
 
                 <div class="notes-container">
-                    <div class="notes-form">
-                        <h3>Create New Note</h3>
-                        <form id="note-form">
-                            <div class="form-group">
-                                <input type="text" id="note-title" placeholder="Note Title" required>
-                            </div>
-                            <div class="form-group">
-                                <select id="note-category">
-                                    <option value="general">General</option>
-                                    <option value="lecture">Lecture Notes</option>
-                                    <option value="assignment">Assignment</option>
-                                    <option value="project">Project</option>
-                                    <option value="reminder">Reminder</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <textarea id="note-content" placeholder="Write your note here..." rows="4" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn--primary">Add Note</button>
-                        </form>
-                    </div>
-
                     <div class="notes-list">
-                        <h3>Your Notes</h3>
-                        <div class="notes-filter">
-                            <select id="filter-category">
-                                <option value="all">All Categories</option>
-                                <option value="general">General</option>
-                                <option value="lecture">Lecture Notes</option>
-                                <option value="assignment">Assignment</option>
-                                <option value="project">Project</option>
-                                <option value="reminder">Reminder</option>
-                            </select>
-                            <input type="text" id="search-notes" placeholder="Search notes...">
+                        <h3>Available Notes</h3>
+                        <div class="notes-description">
+                            <p>📚 Students can share their study notes by submitting them to the course coordinator. Approved notes will be uploaded here for everyone to access.</p>
                         </div>
-                        <div id="notes-display"></div>
+                        <div id="notes-display">
+                            <!-- Sample note entries - replace with actual PDF files -->
+                            <div class="note-card">
+                                <div class="note-header">
+                                    <h4>Advanced AI - Lecture 1 Summary</h4>
+                                    <span class="note-meta">Course: Advanced AI | Uploaded: Aug 2025</span>
+                                </div>
+                                <div class="note-content">
+                                    <p>Comprehensive summary of first lecture covering AI fundamentals and modern approaches.</p>
+                                </div>
+                                <div class="note-actions">
+                                    <a href="#" class="btn btn--primary btn--small" onclick="alert('PDF will be available once uploaded')">Download PDF</a>
+                                </div>
+                            </div>
+
+                            <div class="note-card">
+                                <div class="note-header">
+                                    <h4>Ethics - Professional Guidelines</h4>
+                                    <span class="note-meta">Course: Ethics & Professional Life | Uploaded: Aug 2025</span>
+                                </div>
+                                <div class="note-content">
+                                    <p>Key points from ethics lecture with practical examples and case studies.</p>
+                                </div>
+                                <div class="note-actions">
+                                    <a href="#" class="btn btn--primary btn--small" onclick="alert('PDF will be available once uploaded')">Download PDF</a>
+                                </div>
+                            </div>
+
+                            <div class="empty-state">
+                                <h4>📝 More Notes Coming Soon!</h4>
+                                <p>Students are encouraged to share their study notes. Submit your notes to the course coordinator for approval and uploading.</p>
+                                <p><strong>How to contribute:</strong> Prepare your notes in PDF format and share with the course coordinator for review and upload.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

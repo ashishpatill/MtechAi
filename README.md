@@ -71,10 +71,10 @@ This dashboard provides MTech AI students with:
 
 6. **GPU Programming**
    - **Instructor**: TBD
-   - **Schedule**: 8:00 AM – 9:30 AM
+   - **Schedule**: 8:00 AM – 9:30 AM (Saturday & Sunday)
    - **Platform**: Zoom
    - **Meeting Link**: [GPU Programming Zoom](https://futurense.zoom.us/j/88040308066?pwd=yh69JD0Rd6IZefsW2hIXoiBgA3lTyI.1)
-   - **Status**: 3 Credit Course - Starting Soon
+   - **Status**: 3 Credit Course - Confirmed Schedule
 
 ## 🛠️ Technology Stack
 

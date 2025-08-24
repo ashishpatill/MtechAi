@@ -19,18 +19,15 @@ const courseData = {
     "modules": [
       {
         "name": "Decision Making",
-        "topics": ["Utility Theory and Functions", "Decision Networks", "Sequential Decision Problems"],
-        "lectures": "1-4"
+        "topics": ["Utility Theory and Functions", "Decision Networks", "Sequential Decision Problems"]
       },
       {
         "name": "Reinforcement Learning",
-        "topics": ["Basic Ideas and Applications", "Formalization, Markov Decision Processes", "Different forms of RL: Passive and Active", "Learning optimal strategies"],
-        "lectures": "5-8"
+        "topics": ["Basic Ideas and Applications", "Formalization, Markov Decision Processes", "Different forms of RL: Passive and Active", "Learning optimal strategies"]
       },
       {
         "name": "Probabilistic Reasoning over Time",
-        "topics": ["POMDPs, Hidden Markov Models", "Time-series Analysis: Basic Concepts", "Kalman Filters", "Simple 1D and multidimensional filtering"],
-        "lectures": "9-12"
+        "topics": ["POMDPs, Hidden Markov Models", "Time-series Analysis: Basic Concepts", "Kalman Filters", "Simple 1D and multidimensional filtering"]
       }
     ]
   },
@@ -55,18 +52,15 @@ const courseData = {
     "modules": [
       {
         "name": "Professional Ethics Basics",
-        "topics": ["Moral Reasoning", "Professional vs Ordinary Ethics"],
-        "lectures": "1-3"
+        "topics": ["Moral Reasoning", "Professional vs Ordinary Ethics"]
       },
       {
         "name": "Moral Problems",
-        "topics": ["Rights & Duties", "Conflicts of Interest", "Whistleblowing"],
-        "lectures": "4-7"
+        "topics": ["Rights & Duties", "Conflicts of Interest", "Whistleblowing"]
       },
       {
         "name": "Technology & Society",
-        "topics": ["Innovation Ethics", "AI Ethics", "Social Responsibility"],
-        "lectures": "10-11"
+        "topics": ["Innovation Ethics", "AI Ethics", "Social Responsibility"]
       }
     ]
   },
@@ -85,13 +79,11 @@ const courseData = {
     "modules": [
       {
         "name": "Innovation Fundamentals",
-        "topics": ["Innovation Process", "Technology Transfer", "Startup Ecosystem"],
-        "lectures": "1-5"
+        "topics": ["Innovation Process", "Technology Transfer", "Startup Ecosystem"]
       },
       {
         "name": "IP Management",
-        "topics": ["Patents", "Copyrights", "Trade Secrets", "Licensing"],
-        "lectures": "6-10"
+        "topics": ["Patents", "Copyrights", "Trade Secrets", "Licensing"]
       }
     ]
   },
@@ -114,13 +106,11 @@ const courseData = {
     "modules": [
       {
         "name": "Software Engineering",
-        "topics": ["Lifecycle Models", "Requirements", "UML", "Architecture"],
-        "lectures": "1-10"
+        "topics": ["Lifecycle Models", "Requirements", "UML", "Architecture"]
       },
       {
         "name": "Data Engineering",
-        "topics": ["Data Models", "Storage", "Query Processing", "ETL"],
-        "lectures": "11-20"
+        "topics": ["Data Models", "Storage", "Query Processing", "ETL"]
       }
     ]
   },
@@ -143,18 +133,15 @@ const courseData = {
     "modules": [
       {
         "name": "Foundations",
-        "topics": ["Threats", "Vulnerabilities", "Risk", "MITRE ATT&CK"],
-        "lectures": "1-2"
+        "topics": ["Threats", "Vulnerabilities", "Risk", "MITRE ATT&CK"]
       },
       {
         "name": "Network Security",
-        "topics": ["Firewalls", "IDS/IPS", "VPNs", "Network Architecture"],
-        "lectures": "3-5"
+        "topics": ["Firewalls", "IDS/IPS", "VPNs", "Network Architecture"]
       },
       {
         "name": "Identity & Access",
-        "topics": ["AAA", "LDAP", "MFA", "RBAC/ABAC"],
-        "lectures": "6-7"
+        "topics": ["AAA", "LDAP", "MFA", "RBAC/ABAC"]
       }
     ]
   },
@@ -177,13 +164,11 @@ const courseData = {
     "modules": [
       {
         "name": "GPU Architecture",
-        "topics": ["GPU vs CPU", "Memory Hierarchy", "CUDA/OpenCL"],
-        "lectures": "1-5"
+        "topics": ["GPU vs CPU", "Memory Hierarchy", "CUDA/OpenCL"]
       },
       {
         "name": "Parallel Programming",
-        "topics": ["Thread Management", "Memory Optimization", "Performance"],
-        "lectures": "6-15"
+        "topics": ["Thread Management", "Memory Optimization", "Performance"]
       }
     ]
   }
@@ -327,7 +312,7 @@ function generateCourseDetailHTML(course) {
       <ul>
         ${course.modules.map(module => `
           <li>
-            <strong>${module.name}</strong> (Lectures ${module.lectures})
+            <strong>${module.name}</strong>
             <ul>
               ${module.topics.map(topic => `<li>${topic}</li>`).join('')}
             </ul>
@@ -392,7 +377,7 @@ function renderProgressTracker() {
                 ${progressState[courseId][index] ? 'checked' : ''}
               >
               <span class="module-name">${module.name}</span>
-              <span class="module-lectures">Lectures ${module.lectures}</span>
+              
             </div>
           `).join('')}
         </div>

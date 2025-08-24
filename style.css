@@ -867,6 +867,39 @@ select.form-control {
   font-size: var(--font-size-sm);
 }
 
+/* Date Info Card */
+.date-info-card {
+  background: var(--color-bg-3);
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  border: 1px solid var(--color-card-border);
+  margin-bottom: var(--space-24);
+}
+
+.date-info-card h3 {
+  margin-bottom: var(--space-16);
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+}
+
+.current-date, .current-time {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-bottom: var(--space-8);
+}
+
+.current-date span, .current-time span {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+}
+
+.current-time span {
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-xl);
+}
+
 .today-schedule, .tomorrow-schedule {
   background: var(--color-bg-3);
   border-radius: var(--radius-lg);
@@ -935,6 +968,23 @@ select.form-control {
   font-weight: var(--font-weight-medium);
   margin-top: var(--space-4);
   display: inline-block;
+}
+
+.schedule-item.no-classes {
+  background: var(--color-bg-2);
+  border: 1px dashed var(--color-card-border);
+  text-align: center;
+  padding: var(--space-24);
+}
+
+.schedule-item.no-classes .course-name {
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.schedule-item.no-classes .instructor {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-sm);
 }
 
 /* Schedule Grid */

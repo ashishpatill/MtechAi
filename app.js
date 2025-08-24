@@ -465,6 +465,132 @@ function initializeStudyPlanner() {
   updateWeekDisplay();
 }
 
+// Dynamic schedule functions
+function updateCurrentDateTime() {
+  const now = new Date();
+  const dateOptions = { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  };
+  const timeOptions = { 
+    hour: '2-digit', 
+    minute: '2-digit', 
+    second: '2-digit',
+    hour12: true 
+  };
+  
+  const dateDisplay = document.getElementById('current-date-display');
+  const timeDisplay = document.getElementById('current-time-display');
+  
+  if (dateDisplay) {
+    dateDisplay.textContent = now.toLocaleDateString('en-US', dateOptions);
+  }
+  if (timeDisplay) {
+    timeDisplay.textContent = now.toLocaleTimeString('en-US', timeOptions);
+  }
+}
+
+function getCoursesForDay(targetDate) {
+  const dayOfWeek = targetDate.toLocaleDateString('en-US', { weekday: 'long' });
+  const courses = [];
+  
+  Object.values(courseData).forEach(course => {
+    if (course.days && course.schedule !== 'TBD') {
+      if (Array.isArray(course.days)) {
+        if (course.days.includes(dayOfWeek)) {
+          courses.push(course);
+        }
+      } else if (course.days === dayOfWeek || course.days === 'Saturday only') {
+        courses.push(course);
+      }
+    }
+  });
+  
+  // Sort courses by time (handle time format variations)
+  courses.sort((a, b) => {
+    try {
+      const timeA = a.schedule.split(' ')[0];
+      const timeB = b.schedule.split(' ')[0];
+      return timeA.localeCompare(timeB);
+    } catch (error) {
+      console.warn('Error sorting courses by time:', error);
+      return 0;
+    }
+  });
+  
+  return courses;
+}
+
+function renderScheduleContainer(containerId, courses, isToday = false) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  
+  if (courses.length === 0) {
+    container.innerHTML = `
+      <div class="schedule-item no-classes">
+        <div class="course-info">
+          <div class="course-name">No Classes Today</div>
+          <div class="instructor">Enjoy your free time!</div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+  
+  container.innerHTML = courses.map(course => {
+    let meetingInfo = '';
+    if (course.meetingLink) {
+      meetingInfo = `
+        <div class="meeting-info">
+          <a href="${course.meetingLink}" target="_blank" class="meeting-link-small">
+            ${course.platform === 'Zoom' ? 'Join Zoom Meeting' : 'Join Meeting'}
+          </a>
+        </div>
+      `;
+    }
+    
+    let statusBadge = '';
+    if (isToday && course.startDate && course.startDate.includes('First Class')) {
+      statusBadge = '<div class="status-badge">First Class</div>';
+    }
+    
+    return `
+      <div class="schedule-item">
+        <div class="time">${course.schedule}</div>
+        <div class="course-info">
+          <div class="course-name">${course.name}</div>
+          <div class="instructor">${course.instructors.join(', ')}</div>
+          ${meetingInfo}
+          ${statusBadge}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateDashboardSchedules() {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  
+  console.log('Current date:', today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+  console.log('Tomorrow date:', tomorrow.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+  
+  const todayCourses = getCoursesForDay(today);
+  const tomorrowCourses = getCoursesForDay(tomorrow);
+  
+  console.log('Today courses:', todayCourses);
+  console.log('Tomorrow courses:', tomorrowCourses);
+  
+  renderScheduleContainer('today-schedule-container', todayCourses, true);
+  renderScheduleContainer('tomorrow-schedule-container', tomorrowCourses, false);
+  
+  // Update current date and time
+  updateCurrentDateTime();
+}
+
 // Initialize application
 document.addEventListener('DOMContentLoaded', function() {
   console.log('DOM loaded, initializing application...');
@@ -474,6 +600,12 @@ document.addEventListener('DOMContentLoaded', function() {
   initializeNavigation();
   initializeCourseModals();
   initializeStudyPlanner();
+  
+  // Initialize dynamic schedules
+  updateDashboardSchedules();
+  
+  // Update schedules every minute
+  setInterval(updateDashboardSchedules, 60000);
   
   // Set initial section visibility
   const dashboardSection = document.getElementById('dashboard');

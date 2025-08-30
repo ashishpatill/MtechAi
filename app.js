@@ -87,42 +87,16 @@ const courseData = {
       }
     ]
   },
-  "sde": {
-    "id": "sde",
-    "name": "Software and Data Engineering",
-    "instructors": ["Dr. Sumit Kalra"],
-    "schedule": "TBD",
-    "days": ["Saturday", "Sunday"],
-    "platform": "Zoom/LMS",
-    "startDate": "Aug 30",
-    "status": "Starts next week",
-    "color": "#34A853",
-    "objectives": "Understand and engineer robust, high-quality software systems. Master contemporary data storage, retrieval, and analytics pipelines.",
-    "textbooks": [
-      "Software Engineering: A Practitioner's Approach - Pressman & Maxim (9th Edition)",
-      "Fundamentals of Database Systems - Elmasri & Navathe (7th Edition)",
-      "Fundamentals of Data Engineering - Joe Reis & Matt Housley"
-    ],
-    "modules": [
-      {
-        "name": "Software Engineering",
-        "topics": ["Lifecycle Models", "Requirements", "UML", "Architecture"]
-      },
-      {
-        "name": "Data Engineering",
-        "topics": ["Data Models", "Storage", "Query Processing", "ETL"]
-      }
-    ]
-  },
+
   "cs": {
     "id": "cs",
-    "name": "Cyber Security",
+    "name": "Cyber Security - Elective 1",
     "instructors": ["Dr. Nitin Awathare"],
-    "schedule": "TBD",
+    "schedule": "9:45 - 11:15",
     "days": "TBD",
     "platform": "Google Classroom",
-    "startDate": "TBD",
-    "status": "Details pending",
+    "startDate": "Aug 30",
+    "status": "Schedule TBD - Day to be confirmed",
     "color": "#EA4335",
     "objectives": "Understand essential concepts of security, threats, and risk in digital environments. Gain practical skills in securing networks and systems.",
     "textbooks": [
@@ -147,14 +121,14 @@ const courseData = {
   },
   "gpu": {
     "id": "gpu",
-    "name": "GPU Programming",
-    "instructors": ["TBD"],
-    "schedule": "8:00 AM – 9:30 AM",
+    "name": "GPU Programming - Elective 2",
+    "instructors": ["Dr. Binod"],
+    "schedule": "8:00 AM - 9:30 AM",
     "days": ["Saturday", "Sunday"],
-    "platform": "Zoom",
+    "platform": "Zoom/LMS",
     "meetingLink": "https://futurense.zoom.us/j/88040308066?pwd=yh69JD0Rd6IZefsW2hIXoiBgA3lTyI.1",
-    "startDate": "Starting Soon",
-    "status": "3 Credit Course - Confirmed Schedule",
+    "startDate": "Aug 24",
+    "status": "Confirmed Schedule - Starting Aug 24",
     "color": "#FF9800",
     "objectives": "Master GPU architectures and parallel computing paradigms. Apply GPGPU knowledge to AI/ML problems.",
     "textbooks": [
@@ -174,233 +148,158 @@ const courseData = {
   }
 };
 
-// Progress tracking state - only for lectures, no assignments
-let progressState = {};
+// Navigation: build from courseData and handle Dashboard/Subject switching
+function buildNavigationFromCourses() {
+  const list = document.querySelector('.nav__list');
+  if (!list) return;
+  list.innerHTML = '';
 
-// Initialize progress state for lectures only
-function initializeProgress() {
-  Object.keys(courseData).forEach(courseId => {
-    if (!progressState[courseId]) {
-      progressState[courseId] = {};
-      courseData[courseId].modules.forEach((module, index) => {
-        progressState[courseId][index] = false;
-      });
-    }
+  // Dashboard tab
+  const liDashboard = document.createElement('li');
+  liDashboard.innerHTML = '<button class="nav__btn active" data-section="dashboard">Dashboard</button>';
+  list.appendChild(liDashboard);
+
+  // Subject tabs
+  Object.values(courseData).forEach(course => {
+    const li = document.createElement('li');
+    li.innerHTML = `<button class="nav__btn" data-subject="${course.id}">${course.name}</button>`;
+    list.appendChild(li);
   });
 }
 
-// Navigation functionality - fixed implementation
 function initializeNavigation() {
   console.log('Initializing navigation...');
-  
-  const navButtons = document.querySelectorAll('.nav__btn');
   const sections = document.querySelectorAll('.section');
-  
-  console.log('Found nav buttons:', navButtons.length);
-  console.log('Found sections:', sections.length);
-  
-  navButtons.forEach((btn, index) => {
-    console.log(`Nav button ${index}:`, btn.dataset.section);
-    
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const targetSection = this.dataset.section;
-      console.log('Navigating to section:', targetSection);
-      
-      // Remove active class from all nav buttons
-      navButtons.forEach(b => b.classList.remove('active'));
-      
-      // Add active class to clicked button
-      this.classList.add('active');
-      
-      // Hide all sections
-      sections.forEach(section => {
-        section.classList.remove('active');
-        console.log('Hiding section:', section.id);
-      });
-      
-      // Show target section
-      const targetElement = document.getElementById(targetSection);
-      if (targetElement) {
-        targetElement.classList.add('active');
-        console.log('Showing section:', targetSection);
-        
-        // Load section-specific content
-        if (targetSection === 'progress') {
-          setTimeout(() => renderProgressTracker(), 100);
-        }
-      } else {
-        console.error('Target section not found:', targetSection);
-      }
-    });
-  });
-}
 
-// Course detail modal functionality
-function initializeCourseModals() {
-  console.log('Initializing course modals...');
-  
-  // Use event delegation for course detail buttons
   document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('course-details-btn')) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const courseId = e.target.dataset.course;
-      const course = courseData[courseId];
-      
-      console.log('Opening modal for course:', courseId);
-      
-      if (course) {
-        const modal = document.getElementById('course-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalBody = document.getElementById('modal-body');
-        
-        if (modal && modalTitle && modalBody) {
-          modalTitle.textContent = course.name;
-          modalBody.innerHTML = generateCourseDetailHTML(course);
-          modal.classList.remove('hidden');
-        }
+    const btn = e.target.closest('.nav__btn');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Active state
+    document.querySelectorAll('.nav__btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Hide all sections
+    sections.forEach(section => section.classList.remove('active'));
+
+    const subjectId = btn.getAttribute('data-subject');
+    const targetSection = btn.getAttribute('data-section');
+
+    if (subjectId) {
+      const subjectEl = document.getElementById('subject');
+      if (subjectEl) {
+        renderSubjectPage(subjectId);
+        subjectEl.classList.add('active');
+      }
+    } else if (targetSection === 'dashboard') {
+      const dashboardEl = document.getElementById('dashboard');
+      if (dashboardEl) {
+        dashboardEl.classList.add('active');
+        // Ensure dashboard dynamic content stays fresh
+        updateDashboardSchedules();
+        renderDashboardUpcoming();
       }
     }
   });
-  
-  // Close modal functionality
-  const modal = document.getElementById('course-modal');
-  const closeBtn = document.querySelector('.close-btn');
-  
-  if (closeBtn) {
-    closeBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      modal.classList.add('hidden');
-    });
-  }
-  
-  if (modal) {
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        modal.classList.add('hidden');
-      }
-    });
-  }
 }
 
-// Generate course detail HTML with verified information only
-function generateCourseDetailHTML(course) {
-  let html = `
-    <div class="course-info">
-      <h3>Course Information</h3>
-      <p><strong>Instructors:</strong> ${Array.isArray(course.instructors) ? course.instructors.join(', ') : course.instructors}</p>
-      <p><strong>Schedule:</strong> ${course.schedule}</p>
-      <p><strong>Days:</strong> ${Array.isArray(course.days) ? course.days.join(', ') : course.days}</p>
-      <p><strong>Platform:</strong> ${course.platform}</p>
-      <p><strong>Start Date:</strong> ${course.startDate}</p>
-      <p><strong>Status:</strong> ${course.status}</p>
-      ${course.classroomCode && course.classroomCode !== 'TBD' ? `<p><strong>Classroom Code:</strong> <code>${course.classroomCode}</code></p>` : '<p><strong>Classroom Code:</strong> TBD</p>'}
-      ${course.meetingLink ? `<p><strong>Meeting Link:</strong> <a href="${course.meetingLink}" target="_blank">Join Meeting</a></p>` : ''}
-    </div>
-    
-    <div class="course-objectives">
-      <h3>Course Objectives</h3>
-      <p>${course.objectives}</p>
-    </div>
-    
-    <div class="course-modules">
-      <h3>Course Modules & Topics</h3>
-      <ul>
-        ${course.modules.map(module => `
-          <li>
-            <strong>${module.name}</strong>
-            <ul>
-              ${module.topics.map(topic => `<li>${topic}</li>`).join('')}
-            </ul>
-          </li>
-        `).join('')}
-      </ul>
-    </div>
-    
-    ${course.textbooks ? `
-      <div class="course-books">
-        <h3>Recommended Textbooks</h3>
-        <ul>
-          ${course.textbooks.map(book => `<li>${book}</li>`).join('')}
-        </ul>
+// Subject Page Rendering
+function renderSubjectPage(courseId) {
+  const course = courseData[courseId];
+  const container = document.getElementById('subject');
+  if (!course || !container) return;
+
+  const instructors = Array.isArray(course.instructors) ? course.instructors.join(', ') : course.instructors;
+  const days = Array.isArray(course.days) ? course.days.join(', ') : course.days;
+
+  const textbooksHtml = (course.textbooks && course.textbooks.length)
+    ? `<ul>${course.textbooks.map(book => `<li>${book}</li>`).join('')}</ul>`
+    : '';
+
+  const modulesHtml = (course.modules || []).map(module => `
+    <li>
+      <strong>${module.name}</strong>
+      <ul>${(module.topics || []).map(topic => `<li>${topic}</li>`).join('')}</ul>
+    </li>
+  `).join('');
+
+  const meetingLinks = course.meetingLinks || (course.meetingLink ? [course.meetingLink] : []);
+
+  const meetingsHtml = meetingLinks.length
+    ? `<ul>${meetingLinks.map(link => `<li><a href="${link}" target="_blank">Join Meeting</a></li>`).join('')}</ul>`
+    : '';
+
+  container.innerHTML = `
+    <div class="subject-header">
+      <h2>${course.name}</h2>
+      <div class="subject-meta">
+        <div><strong>Instructors:</strong> ${instructors || ''}</div>
+        <div><strong>Status:</strong> ${course.status || ''}</div>
       </div>
-    ` : ''}
-    
-    <div class="course-note">
-      <h3>Important Note</h3>
-      <p><strong>No assignments are tracked until they are officially assigned by professors.</strong> This progress tracker is only for lectures and personal study planning.</p>
+    </div>
+
+    <div class="subject-body">
+      <section class="subject-overview">
+        <h3>Overview</h3>
+        ${course.objectives ? `<p>${course.objectives}</p>` : ''}
+        ${textbooksHtml ? `<div class="subject-books"><h4>Textbooks</h4>${textbooksHtml}</div>` : ''}
+      </section>
+
+      <section class="subject-modules">
+        <h3>Modules & Topics</h3>
+        ${modulesHtml ? `<ul>${modulesHtml}</ul>` : ''}
+      </section>
+
+      <section class="subject-resources">
+        <h3>Resources</h3>
+        <div id="subject-resources-list"></div>
+      </section>
+
+      <section class="subject-notes">
+        <h3>Notes</h3>
+        <div id="subject-notes-list"></div>
+      </section>
+
+      <div class="subtabs">
+        <button class="subtab active" data-panel="subject-schedule">Schedule</button>
+        <button class="subtab" data-panel="subject-meetings">Meeting Links</button>
+      </div>
+      <div id="subject-schedule" class="subtab-panel" style="display:block;">
+        <div><strong>Days:</strong> ${days || ''}</div>
+        <div><strong>Time:</strong> ${course.schedule || ''}</div>
+        <div><strong>Platform:</strong> ${course.platform || ''}</div>
+        <div><strong>Start Date:</strong> ${course.startDate || ''}</div>
+        ${course.classroomCode && course.classroomCode !== 'TBD' ? `<div><strong>Classroom Code:</strong> <code>${course.classroomCode}</code></div>` : ''}
+      </div>
+      <div id="subject-meetings" class="subtab-panel">
+        ${meetingsHtml}
+      </div>
     </div>
   `;
-  
-  return html;
 }
 
-// Progress tracker functionality - lectures only
-function renderProgressTracker() {
-  console.log('Rendering progress tracker...');
-  
-  const container = document.getElementById('progress-container');
-  
-  if (!container) {
-    console.error('Progress container not found');
-    return;
-  }
-  
-  let html = '';
-  Object.keys(courseData).forEach(courseId => {
-    const course = courseData[courseId];
-    const completedModules = Object.values(progressState[courseId]).filter(Boolean).length;
-    const totalModules = course.modules.length;
-    const progressPercentage = totalModules > 0 ? Math.round((completedModules / totalModules) * 100) : 0;
-    
-    html += `
-      <div class="progress-card">
-        <div class="progress-header">
-          <h3>${course.name}</h3>
-          <span>${completedModules}/${totalModules} modules completed</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: ${progressPercentage}%"></div>
-        </div>
-        <div class="modules-list">
-          ${course.modules.map((module, index) => `
-            <div class="module-item">
-              <input 
-                type="checkbox" 
-                class="module-checkbox" 
-                data-course="${courseId}" 
-                data-module="${index}"
-                ${progressState[courseId][index] ? 'checked' : ''}
-              >
-              <span class="module-name">${module.name}</span>
-              
-            </div>
-          `).join('')}
-        </div>
-        <div class="course-status">
-          <small><strong>Status:</strong> ${course.status}</small>
-        </div>
-      </div>
-    `;
+function initSubjectSubtabs() {
+  document.addEventListener('click', function(e) {
+    const tab = e.target.closest('.subtab');
+    if (!tab) return;
+    e.preventDefault();
+    const panelId = tab.getAttribute('data-panel');
+    document.querySelectorAll('.subtab').forEach(b => b.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.subtab-panel').forEach(p => p.style.display = 'none');
+    const panel = document.getElementById(panelId);
+    if (panel) panel.style.display = 'block';
   });
-  
-  container.innerHTML = html;
-  
-  // Add event listeners for checkboxes using event delegation
-  container.addEventListener('change', function(e) {
-    if (e.target.classList.contains('module-checkbox')) {
-      const courseId = e.target.dataset.course;
-      const moduleIndex = parseInt(e.target.dataset.module);
-      
-      progressState[courseId][moduleIndex] = e.target.checked;
-      
-      // Re-render to update progress bar
-      setTimeout(() => renderProgressTracker(), 100);
-    }
+}
+
+// Dashboard Upcoming renderers (empty until data provided)
+function renderDashboardUpcoming() {
+  const targetIds = ['upcoming-assignments', 'upcoming-quizzes', 'upcoming-exams'];
+  targetIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = '';
   });
 }
 
@@ -570,14 +469,15 @@ function updateDashboardSchedules() {
 document.addEventListener('DOMContentLoaded', function() {
   console.log('DOM loaded, initializing application...');
   
-  // Initialize all components
-  initializeProgress();
+  // Build navigation and handlers
+  buildNavigationFromCourses();
   initializeNavigation();
-  initializeCourseModals();
+  initSubjectSubtabs();
   initializeStudyPlanner();
   
   // Initialize dynamic schedules
   updateDashboardSchedules();
+  renderDashboardUpcoming();
   
   // Update schedules every minute
   setInterval(updateDashboardSchedules, 60000);
@@ -598,17 +498,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   console.log('Application initialized successfully');
-});
-
-// Keyboard navigation
-document.addEventListener('keydown', function(e) {
-  // Close modal with Escape key
-  if (e.key === 'Escape') {
-    const modal = document.getElementById('course-modal');
-    if (modal && !modal.classList.contains('hidden')) {
-      modal.classList.add('hidden');
-    }
-  }
 });
 
 // Utility function to validate weekend-only schedule

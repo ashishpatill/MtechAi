@@ -348,7 +348,6 @@ function renderSubjectPage(courseId) {
       ${dayIndicator}
       <div class="subject-meta">
         <div><strong>Instructors:</strong> ${instructors || ''}</div>
-        <div><strong>Status:</strong> ${course.status || ''}</div>
       </div>
     </div>
 
@@ -519,11 +518,6 @@ function renderScheduleContainer(containerId, courses, isToday = false) {
         `;
       }
       
-      let statusBadge = '';
-      if (course.startDate && course.startDate.includes('Starting today')) {
-        statusBadge = '<div class="status-badge">Starting Today</div>';
-      }
-      
       // Add day indicator for Saturday-only courses
       let dayBadge = '';
       if (course.days && course.days.length === 1 && course.days[0] === 'Saturday') {
@@ -537,7 +531,6 @@ function renderScheduleContainer(containerId, courses, isToday = false) {
             <div class="course-name">${course.name}</div>
             <div class="instructor">${course.instructors.join(', ')}</div>
             ${meetingInfo}
-            ${statusBadge}
             ${dayBadge}
           </div>
         </div>

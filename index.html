@@ -25,13 +25,7 @@
     <nav class="nav">
         <div class="container">
             <ul class="nav__list">
-                <li><button class="nav__btn active" data-section="dashboard">Dashboard</button></li>
-                <li><button class="nav__btn" data-section="schedule">Schedule</button></li>
-                <li><button class="nav__btn" data-section="courses">Courses</button></li>
-                <li><button class="nav__btn" data-section="progress">Progress</button></li>
-                <li><button class="nav__btn" data-section="quick-links">Quick Links</button></li>
-                <li><button class="nav__btn" data-section="notes">Notes</button></li>
-                <li><button class="nav__btn" data-section="planner">Study Planner</button></li>
+                <!-- Navigation will be populated dynamically by JavaScript -->
             </ul>
         </div>
     </nav>
@@ -81,333 +75,75 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Upcoming Items -->
+                <div class="upcoming-grid">
+                    <div class="upcoming-card">
+                        <h3>Upcoming Assignments</h3>
+                        <div id="upcoming-assignments"></div>
+                    </div>
+                    <div class="upcoming-card">
+                        <h3>Upcoming Quizzes</h3>
+                        <div id="upcoming-quizzes"></div>
+                    </div>
+                    <div class="upcoming-card">
+                        <h3>Upcoming Exams</h3>
+                        <div id="upcoming-exams"></div>
+                    </div>
+                </div>
+
+                <!-- Study Planner (embedded) -->
+                <section id="dashboard-planner">
+                    <h2>Study Planner</h2>
+                    <div class="planner-note">
+                        <p><strong>Personal Organization Tool:</strong> Plan your own study sessions. This is for personal use only.</p>
+                    </div>
+                    <div class="planner-container">
+                        <div class="calendar-header">
+                            <button class="btn btn--secondary" id="prev-week">← Previous</button>
+                            <h3 id="current-week"></h3>
+                            <button class="btn btn--secondary" id="next-week">Next →</button>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="calendar-day">
+                                <h4>Mon</h4>
+                                <div class="day-content"></div>
+                            </div>
+                            <div class="calendar-day">
+                                <h4>Tue</h4>
+                                <div class="day-content"></div>
+                            </div>
+                            <div class="calendar-day">
+                                <h4>Wed</h4>
+                                <div class="day-content"></div>
+                            </div>
+                            <div class="calendar-day">
+                                <h4>Thu</h4>
+                                <div class="day-content"></div>
+                            </div>
+                            <div class="calendar-day">
+                                <h4>Fri</h4>
+                                <div class="day-content"></div>
+                            </div>
+                            <div class="calendar-day weekend">
+                                <h4>Sat</h4>
+                                <div class="day-content"></div>
+                            </div>
+                            <div class="calendar-day weekend">
+                                <h4>Sun</h4>
+                                <div class="day-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </section>
 
-            <!-- Schedule Section -->
-            <section id="schedule" class="section">
-                <h2>Weekend Schedule</h2>
-                <div class="schedule-note">
-                    <p><strong>Note:</strong> All classes are conducted on weekends only (Saturday & Sunday). No classes Monday-Friday.</p>
-                </div>
-                <div class="schedule-grid">
-                    <div class="schedule-day">
-                        <h4>Saturday</h4>
-                        <div class="schedule-slot">
-                            <div class="time">8:00 AM - 9:30 AM</div>
-                            <div class="course gpu-prog">GPU Programming</div>
-                            <div class="start-info">Zoom Meeting</div>
-                        </div>
-                        <div class="schedule-slot">
-                            <div class="time">11:30 AM - 1:00 PM</div>
-                            <div class="course advanced-ai">Advanced AI</div>
-                            <div class="start-info">Starts Aug 24</div>
-                        </div>
-                        <div class="schedule-slot">
-                            <div class="time">1:30 PM - 3:00 PM</div>
-                            <div class="course innovation-ip">Innovation & IP</div>
-                            <div class="start-info">Starts Aug 30</div>
-                        </div>
-                        <div class="schedule-slot">
-                            <div class="time">5:00 PM - 6:30 PM</div>
-                            <div class="course ethics">Ethics & Professional Life</div>
-                            <div class="start-info">Started Aug 23</div>
-                        </div>
-                    </div>
-                    <div class="schedule-day">
-                        <h4>Sunday</h4>
-                        <div class="schedule-slot">
-                            <div class="time">8:00 AM - 9:30 AM</div>
-                            <div class="course gpu-prog">GPU Programming</div>
-                            <div class="start-info">Zoom Meeting</div>
-                        </div>
-                        <div class="schedule-slot">
-                            <div class="time">11:30 AM - 1:00 PM</div>
-                            <div class="course advanced-ai">Advanced AI</div>
-                            <div class="start-info">Starts Aug 24</div>
-                        </div>
-                        <div class="schedule-slot">
-                            <div class="time">5:00 PM - 6:30 PM</div>
-                            <div class="course ethics">Ethics & Professional Life</div>
-                            <div class="start-info">Started Aug 23</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="pending-schedule">
-                    <h3>Courses with Pending Schedule Details</h3>
-                    <div class="pending-courses">
-                        <div class="pending-item">
-                            <span class="course-name">Software and Data Engineering</span>
-                            <span class="status">Schedule TBD - Starts Aug 30</span>
-                        </div>
-                        <div class="pending-item">
-                            <span class="course-name">Cyber Security</span>
-                            <span class="status">Schedule & Start Date TBD</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Courses Section -->
-            <section id="courses" class="section">
-                <h2>Course Details</h2>
-                <div class="courses-grid">
-                    <div class="course-card confirmed" data-course="aai">
-                        <div class="course-header advanced-ai">
-                            <h3>Advanced Artificial Intelligence</h3>
-                            <span class="course-code">hijxvrwt</span>
-                        </div>
-                        <div class="course-details">
-                            <p><strong>Instructors:</strong> Dr. Vignesh, Dr. Dipanjan Roy</p>
-                            <p><strong>Schedule:</strong> 11:30 AM – 1:00 PM (Sat, Sun)</p>
-                            <p><strong>Start Date:</strong> Aug 24 (Sunday) - First class tomorrow</p>
-                            <p><strong>Status:</strong> <span class="status status--success">Confirmed</span></p>
-                        </div>
-                        <button class="btn btn--outline course-details-btn" data-course="aai">View Details</button>
-                    </div>
-
-                    <div class="course-card confirmed" data-course="epl">
-                        <div class="course-header ethics">
-                            <h3>Ethics and Professional Life</h3>
-                            <span class="course-code">zqvcgcui</span>
-                        </div>
-                        <div class="course-details">
-                            <p><strong>Instructor:</strong> Dr. Dinesh Mohan</p>
-                            <p><strong>Schedule:</strong> 5:00 PM – 6:30 PM (Sat, Sun)</p>
-                            <p><strong>Start Date:</strong> Aug 23 (Saturday) - Started today</p>
-                            <p><strong>Status:</strong> <span class="status status--success">Active</span></p>
-                        </div>
-                        <button class="btn btn--outline course-details-btn" data-course="epl">View Details</button>
-                    </div>
-
-                    <div class="course-card confirmed" data-course="iip">
-                        <div class="course-header innovation-ip">
-                            <h3>Innovation and IP Management</h3>
-                            <span class="course-code">zy3yovsw</span>
-                        </div>
-                        <div class="course-details">
-                            <p><strong>Instructors:</strong> Dr. Manu Kanchan, Dr. Deepak Saxena</p>
-                            <p><strong>Schedule:</strong> 1:30-3:00 PM (Saturday only)</p>
-                            <p><strong>Start Date:</strong> Aug 30</p>
-                            <p><strong>Status:</strong> <span class="status status--info">Starts Next Week</span></p>
-                        </div>
-                        <button class="btn btn--outline course-details-btn" data-course="iip">View Details</button>
-                    </div>
-                    
-                    <div class="course-card partial" data-course="sde">
-                        <div class="course-header software-eng">
-                            <h3>Software and Data Engineering</h3>
-                            <span class="course-code">TBD</span>
-                        </div>
-                        <div class="course-details">
-                            <p><strong>Instructor:</strong> Dr. Sumit Kalra</p>
-                            <p><strong>Schedule:</strong> TBD (Weekends only)</p>
-                            <p><strong>Start Date:</strong> Aug 30</p>
-                            <p><strong>Status:</strong> <span class="status status--warning">Schedule Pending</span></p>
-                        </div>
-                        <button class="btn btn--outline course-details-btn" data-course="sde">View Details</button>
-                    </div>
-
-                    <div class="course-card pending" data-course="cs">
-                        <div class="course-header cyber-security">
-                            <h3>Cyber Security</h3>
-                            <span class="course-code">TBD</span>
-                        </div>
-                        <div class="course-details">
-                            <p><strong>Instructor:</strong> Dr. Nitin Awathare</p>
-                            <p><strong>Schedule:</strong> TBD</p>
-                            <p><strong>Start Date:</strong> TBD</p>
-                            <p><strong>Status:</strong> <span class="status status--warning">Details Pending</span></p>
-                        </div>
-                        <button class="btn btn--outline course-details-btn" data-course="cs">View Details</button>
-                    </div>
-
-                    <div class="course-card confirmed" data-course="gpu">
-                        <div class="course-header gpu-prog">
-                            <h3>GPU Programming</h3>
-                            <span class="course-code">3 Credits</span>
-                        </div>
-                        <div class="course-details">
-                            <p><strong>Instructor:</strong> TBD</p>
-                            <p><strong>Schedule:</strong> 8:00 AM – 9:30 AM (Sat, Sun)</p>
-                            <p><strong>Platform:</strong> Zoom</p>
-                            <p><strong>Meeting Link:</strong> <a href="https://futurense.zoom.us/j/88040308066?pwd=yh69JD0Rd6IZefsW2hIXoiBgA3lTyI.1" target="_blank" class="meeting-link-small">Join Zoom Meeting</a></p>
-                            <p><strong>Status:</strong> <span class="status status--success">Confirmed</span></p>
-                        </div>
-                        <button class="btn btn--outline course-details-btn" data-course="gpu">View Details</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Progress Section -->
-            <section id="progress" class="section">
-                <h2>Lecture Progress Tracker</h2>
-                <div class="progress-note">
-                    <p><strong>Note:</strong> Track your progress through course lectures and modules. No assignments are tracked until they are officially assigned by professors.</p>
-                </div>
-                <div id="progress-container"></div>
-            </section>
-
-            <!-- Quick Links Section -->
-            <section id="quick-links" class="section">
-                <h2>Quick Access</h2>
-                <div class="quick-links-grid">
-                    <div class="link-card">
-                        <h3>Google Classroom Links</h3>
-                        <div class="classroom-codes">
-                            <div class="code-item">
-                                <span class="course-name">Advanced AI</span>
-                                <a href="https://classroom.google.com/c/Nzk1Njk4NzIxMjEw" target="_blank" class="classroom-link">Open Classroom</a>
-                            </div>
-                            <div class="code-item">
-                                <span class="course-name">Ethics & Professional Life</span>
-                                <a href="https://classroom.google.com/c/Nzk1NzAzOTQwNjI1" target="_blank" class="classroom-link">Open Classroom</a>
-                            </div>
-                            <div class="code-item">
-                                <span class="course-name">Innovation & IP</span>
-                                <a href="https://classroom.google.com/c/Nzk5NTU2MzQ2NzAw" target="_blank" class="classroom-link">Open Classroom</a>
-                            </div>
-                            <div class="code-item pending">
-                                <span class="course-name">GPU Programming</span>
-                                <span class="status-text">Classroom Code TBD</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="link-card">
-                        <h3>Meeting Links</h3>
-                        <div class="meeting-links">
-                            <div class="link-item">
-                                <span class="course-name">Ethics & Professional Life</span>
-                                <a href="https://meet.google.com/dmh-kmuo-yib" target="_blank" class="meeting-link">Join Meeting</a>
-                            </div>
-                            <div class="link-item">
-                                <span class="course-name">Advanced AI</span>
-                                <a href="https://meet.google.com/qee-cfqi-qqp" target="_blank" class="meeting-link">Join Meeting</a>
-                            </div>
-                            <div class="link-item">
-                                <span class="course-name">GPU Programming</span>
-                                <a href="https://futurense.zoom.us/j/88040308066?pwd=yh69JD0Rd6IZefsW2hIXoiBgA3lTyI.1" target="_blank" class="meeting-link">Join Meeting</a>
-                            </div>
-                            <div class="link-item pending">
-                                <span class="course-name">Other Courses</span>
-                                <span class="status-text">Links TBD</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="link-card">
-                        <h3>Academic Resources</h3>
-                        <div class="resource-links">
-                            <a href="https://iitjodhpur.futurense.com/course/view.php?id=252" class="resource-link" target="_blank">Software Engineering LMS</a>
-                            <a href="https://iitjodhpur.futurense.com/course/view.php?id=251" class="resource-link" target="_blank">GPU Programming LMS</a>
-                            <a href="https://iitjodhpur.futurense.com/mod/resource/view.php?id=7303" class="resource-link" target="_blank">GPU Programming - Lecture 1 Slides</a>
-                            <a href="https://iitjodhpur.futurense.com/pluginfile.php/24710/mod_resource/content/3/programming_massively_parallel_processors.pdf" class="resource-link" target="_blank">GPU Programming Textbook (PDF)</a>
-                            <a href="https://iitjodhpur.futurense.com/calendar/view.php?view=month" class="resource-link" target="_blank">Academic Calendar</a>
-                            <a href="#" class="resource-link">Library Portal</a>
-                            <a href="#" class="resource-link">Student Portal</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Notes Section -->
-            <section id="notes" class="section">
-                <h2>Student Shared Notes</h2>
-                <div class="notes-note">
-                    <p><strong>Study Materials:</strong> Download helpful notes and study materials shared by fellow students.</p>
-                </div>
-
-                <div class="notes-container">
-                    <div class="notes-list">
-                        <h3>Available Notes</h3>
-                        <div class="notes-description">
-                            <p>📚 Student-contributed study materials will be uploaded here. Check back regularly for new content.</p>
-                        </div>
-                        <div id="notes-display">
-                            <div class="no-notes">
-                                <h4>📝 Share Your Notes</h4>
-                                <p>Share your notes in PDF format if you wish to share with the class.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Study Planner Section -->
-            <section id="planner" class="section">
-                <h2>Personal Study Planner</h2>
-                <div class="planner-note">
-                    <p><strong>Personal Organization Tool:</strong> Plan your own study sessions. This is for personal use only - no preset assignments or deadlines from professors.</p>
-                </div>
-                <div class="planner-container">
-                    <div class="calendar-header">
-                        <button class="btn btn--secondary" id="prev-week">← Previous</button>
-                        <h3 id="current-week">Week of August 23, 2025</h3>
-                        <button class="btn btn--secondary" id="next-week">Next →</button>
-                    </div>
-                    <div class="calendar-grid">
-                        <div class="calendar-day">
-                            <h4>Mon</h4>
-                            <div class="day-content">
-                                <div class="study-session">Self-study: Review notes</div>
-                            </div>
-                        </div>
-                        <div class="calendar-day">
-                            <h4>Tue</h4>
-                            <div class="day-content">
-                                <div class="study-session">Reading: Ethics textbook</div>
-                            </div>
-                        </div>
-                        <div class="calendar-day">
-                            <h4>Wed</h4>
-                            <div class="day-content">
-                                <div class="study-session">Preparation for weekend</div>
-                            </div>
-                        </div>
-                        <div class="calendar-day">
-                            <h4>Thu</h4>
-                            <div class="day-content">
-                                <div class="study-session">Research & reading</div>
-                            </div>
-                        </div>
-                        <div class="calendar-day">
-                            <h4>Fri</h4>
-                            <div class="day-content">
-                                <div class="study-session">Weekend prep</div>
-                            </div>
-                        </div>
-                        <div class="calendar-day weekend">
-                            <h4>Sat</h4>
-                            <div class="day-content">
-                                <div class="class-session">AI Class (starts tomorrow)</div>
-                                <div class="class-session">Innovation & IP (starts Aug 30)</div>
-                                <div class="class-session">Ethics Class</div>
-                            </div>
-                        </div>
-                        <div class="calendar-day weekend">
-                            <h4>Sun</h4>
-                            <div class="day-content">
-                                <div class="class-session">AI Class (first class)</div>
-                                <div class="class-session">Ethics Class</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <!-- Subject Page Section (dynamic) -->
+            <section id="subject" class="section"></section>
         </div>
     </main>
 
-    <!-- Course Detail Modal -->
-    <div id="course-modal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modal-title">Course Details</h2>
-                <button class="close-btn">&times;</button>
-            </div>
-            <div class="modal-body" id="modal-body"></div>
-        </div>
-    </div>
+    
 
     <script src="app.js"></script>
 </body>

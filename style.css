@@ -1045,112 +1045,118 @@ select.form-control {
 }
 
 .day-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+  min-height: 60px;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
 }
 
-.study-session, .class-session {
-  padding: var(--space-4) var(--space-6);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-}
-
-.study-session {
-  background: var(--color-bg-3);
-  color: var(--color-success);
-}
-
-.class-session {
-  background: var(--color-bg-1);
-  color: var(--color-primary);
-  font-weight: var(--font-weight-bold);
-}
-
-/* Modal */
-/* Subject Subtabs */
-.subtabs {
-  display: flex;
-  gap: var(--space-8);
-  margin: var(--space-16) 0;
-}
-
-.subtab {
-  padding: var(--space-8) var(--space-16);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-base);
-  background: var(--color-surface);
-  cursor: pointer;
-}
-
-.subtab.active {
-  background: var(--color-primary);
-  color: var(--color-btn-primary-text);
-  border-color: transparent;
-}
-
-.subtab-panel {
+/* Study Planner Styles */
+#dashboard-planner {
+  margin-top: 2rem;
+  padding: 2rem;
   background: var(--color-surface);
   border: 1px solid var(--color-card-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-16);
+  border-radius: 12px;
 }
 
-/* Classroom Links Styling */
-.classroom-link {
-  color: var(--color-teal-500);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  background: rgba(33, 128, 141, 0.1);
-  transition: all 0.2s ease;
-  font-family: var(--font-family-mono);
-  font-size: 0.9rem;
-}
-
-.classroom-link:hover {
-  background: var(--color-teal-500);
-  color: white;
-  text-decoration: none;
-}
-
-/* Notes Section Styles */
-.notes-container {
-  margin-top: 1.5rem;
-}
-
-.notes-list h3 {
-  margin-bottom: 1rem;
+#dashboard-planner h2 {
+  margin: 0 0 1.5rem 0;
   color: var(--color-text);
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
-.notes-description {
+.planner-note {
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-card-border);
+  border-radius: 8px;
+  padding: 1rem;
   margin-bottom: 1.5rem;
 }
 
-.notes-description p {
+.planner-note p {
   margin: 0;
-  color: var(--color-text-secondary);
-  line-height: 1.5;
-}
-
-.no-notes {
-  text-align: center;
-  padding: 3rem 2rem;
-  color: var(--color-text-secondary);
-}
-
-.no-notes h4 {
   color: var(--color-text);
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+  font-weight: 500;
+  font-size: 0.875rem;
 }
 
-.no-notes p {
+.planner-container {
+  background: var(--color-background);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid var(--color-card-border-inner);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.calendar-header h3 {
   margin: 0;
-  line-height: 1.5;
+  color: var(--color-text);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.calendar-header .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendar-header .btn:hover {
+  background: var(--color-secondary);
+  border-color: var(--color-primary);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.75rem;
+}
+
+.calendar-day {
+  border: 1px solid var(--color-card-border-inner);
+  border-radius: 6px;
+  padding: 0.75rem;
+  min-height: 100px;
+  background: var(--color-surface);
+  transition: all 0.2s ease;
+}
+
+.calendar-day:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-day.weekend {
+  background: var(--color-bg-1);
+  border-color: var(--color-primary);
+}
+
+.calendar-day h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  font-weight: 600;
+}
+
+.day-content {
+  min-height: 60px;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
 }
 
 /* Responsive Design */

@@ -836,6 +836,21 @@ select.form-control {
   gap: var(--space-24);
 }
 
+/* Upcoming blocks */
+.upcoming-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-20);
+  margin-top: var(--space-24);
+}
+
+.upcoming-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-20);
+}
+
 .stats-card {
   background: var(--color-bg-1);
   border-radius: var(--radius-lg);
@@ -1094,7 +1109,6 @@ select.form-control {
 
 /* Course Colors */
 .advanced-ai { background: var(--color-bg-1); color: var(--color-primary); }
-.software-eng { background: var(--color-bg-3); color: var(--color-success); }
 .cyber-security { background: var(--color-bg-4); color: var(--color-error); }
 .ethics { background: var(--color-bg-2); color: var(--color-warning); }
 .innovation-ip { background: var(--color-bg-5); color: var(--color-info); }
@@ -1419,93 +1433,32 @@ select.form-control {
 }
 
 /* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+/* Subject Subtabs */
+.subtabs {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  gap: var(--space-8);
+  margin: var(--space-16) 0;
 }
 
-.modal.hidden {
-  display: none !important;
-}
-
-.modal-content {
+.subtab {
+  padding: var(--space-8) var(--space-16);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
   background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  max-width: 600px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  box-shadow: var(--shadow-lg);
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--space-20);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.modal-header h2 {
-  margin: 0;
-  color: var(--color-text);
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  font-size: var(--font-size-3xl);
   cursor: pointer;
-  color: var(--color-text-secondary);
-  padding: 0;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.close-btn:hover {
-  color: var(--color-text);
+.subtab.active {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  border-color: transparent;
 }
 
-.modal-body {
-  padding: var(--space-20);
-}
-
-.modal-body h3 {
-  color: var(--color-text);
-  margin-bottom: var(--space-12);
-}
-
-.modal-body h4 {
-  color: var(--color-primary);
-  margin: var(--space-16) 0 var(--space-8) 0;
-}
-
-.modal-body ul {
-  margin: var(--space-8) 0;
-  padding-left: var(--space-20);
-}
-
-.modal-body li {
-  margin-bottom: var(--space-4);
-  color: var(--color-text-secondary);
-}
-
-.modal-body code {
-  background: var(--color-secondary);
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-sm);
-  font-family: var(--font-family-mono);
+.subtab-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-16);
 }
 
 /* Classroom Links Styling */

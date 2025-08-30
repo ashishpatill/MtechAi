@@ -81,6 +81,12 @@ This dashboard provides MTech AI students with:
    - **Start Date**: Aug 30
    - **Status**: Day TBD - To be confirmed by professor
 
+## 📚 Course Materials & Resources
+
+### Advanced AI Course Materials
+- **Course Materials**: [Advanced AI Course Materials](https://drive.google.com/file/d/18Vpe5jgaxU192y0rU9W4YMW9wWLFNPPo/view)
+- **Textbook**: [Advanced AI Textbook](https://drive.google.com/file/d/1yL_p5-KSAEPMgiAKMUDASS9jlB_yWCIN)
+
 ## 🛠️ Technology Stack
 
 - **Frontend**: Pure HTML5, CSS3, and Vanilla JavaScript
@@ -160,13 +166,8 @@ The dashboard is built with CSS custom properties (variables) for easy customiza
 ## 📞 Support
 
 For questions or issues related to this dashboard:
-<<<<<<< HEAD
-- Create an [Issue](https://github.com/ashishpatill/MTechAi/issues) on GitHub
-- Check the [Discussions](https://github.com/ashishpatill/MTechAi/discussions) section
-=======
 - Create an [Issue](https://github.com/ashishpatill/MtechAi/issues) on GitHub
 - Check the [Discussions](https://github.com/ashishpatill/MtechAi/discussions) section
->>>>>>> fd2add364f9e50ee08f3e1e4b5ef9eb42ce46c2a
 
 ## 📜 License
 
@@ -174,6 +175,6 @@ This project is for educational and personal use. Please respect academic integr
 
 ---
 
-**Last Updated**: August 2025
+**Last Updated**: August 30, 2025
 **Dashboard Version**: 1.0.0
 **Live Status**: ✅ Active on GitHub Pages

@@ -22,6 +22,10 @@ const courseData = {
       {
         "name": "Advanced AI Course Materials",
         "url": "https://drive.google.com/file/d/18Vpe5jgaxU192y0rU9W4YMW9wWLFNPPo/view"
+      },
+      {
+        "name": "Advanced AI Textbook",
+        "url": "https://drive.google.com/file/d/1yL_p5-KSAEPMgiAKMUDASS9jlB_yWCIN"
       }
     ],
     "modules": [
@@ -77,15 +81,15 @@ const courseData = {
     "id": "iip",
     "name": "Innovation and IP Management",
     "instructors": ["Dr. Manu Kanchan", "Dr. Deepak Saxena"],
-    "schedule": "1:30-3:00 PM",
+    "schedule": "1:30 PM – 3:00 PM",
     "days": ["Saturday"],
     "platform": "Google Classroom",
     "classroomCode": "zy3yovsw",
     "lmsLink": "https://iitjodhpur.futurense.com/course/view.php?id=218",
     "classroomLink": "https://classroom.google.com/c/Nzk5NTU2MzQ2NzAw",
     "meetingLink": "https://meet.google.com/jwx-qdgs-nkb",
-    "startDate": "Aug 30",
-    "status": "Starts next week",
+    "startDate": "Aug 30 (Saturday)",
+    "status": "Starting today",
     "color": "#9C27B0",
     "objectives": "Understanding innovation processes and intellectual property management in technology sector.",
     "modules": [
@@ -386,19 +390,28 @@ function renderDashboardUpcoming() {
 
 // Dynamic schedule functions
 
-
-function getCoursesForDay(targetDate) {
-  const dayOfWeek = targetDate.toLocaleDateString('en-US', { weekday: 'long' });
+function getWeekendCourses() {
   const courses = [];
+  
+  console.log('Getting weekend courses...');
   
   Object.values(courseData).forEach(course => {
     if (course.days && course.schedule !== 'TBD') {
+      console.log(`Course: ${course.name}, Days: ${JSON.stringify(course.days)}, Schedule: ${course.schedule}`);
+      
       if (Array.isArray(course.days)) {
-        if (course.days.includes(dayOfWeek)) {
+        // Check if course has Saturday or Sunday
+        if (course.days.includes('Saturday') || course.days.includes('Sunday')) {
+          console.log(`✓ Adding ${course.name} for weekend`);
           courses.push(course);
+        } else {
+          console.log(`✗ ${course.name} not scheduled for weekend`);
         }
-      } else if (course.days === dayOfWeek || course.days === 'Saturday only') {
+      } else if (course.days === 'Saturday' || course.days === 'Sunday' || course.days === 'Saturday only') {
+        console.log(`✓ Adding ${course.name} for weekend (direct match)`);
         courses.push(course);
+      } else {
+        console.log(`✗ ${course.name} not scheduled for weekend (direct check)`);
       }
     }
   });
@@ -415,6 +428,50 @@ function getCoursesForDay(targetDate) {
     }
   });
   
+  console.log(`Final weekend courses:`, courses.map(c => c.name));
+  return courses;
+}
+
+function getCoursesForDay(targetDate) {
+  const dayOfWeek = targetDate.toLocaleDateString('en-US', { weekday: 'long' });
+  const courses = [];
+  
+  console.log(`Checking courses for: ${dayOfWeek}`);
+  console.log(`Available courses:`, Object.values(courseData).map(c => `${c.name}: ${JSON.stringify(c.days)}`));
+  
+  Object.values(courseData).forEach(course => {
+    if (course.days && course.schedule !== 'TBD') {
+      console.log(`Course: ${course.name}, Days: ${JSON.stringify(course.days)}, Schedule: ${course.schedule}`);
+      
+      if (Array.isArray(course.days)) {
+        if (course.days.includes(dayOfWeek)) {
+          console.log(`✓ Adding ${course.name} for ${dayOfWeek}`);
+          courses.push(course);
+        } else {
+          console.log(`✗ ${course.name} not matching ${dayOfWeek} (array check)`);
+        }
+      } else if (course.days === dayOfWeek || course.days === 'Saturday only') {
+        console.log(`✓ Adding ${course.name} for ${dayOfWeek} (direct match or Saturday only)`);
+        courses.push(course);
+      } else {
+        console.log(`✗ ${course.name} not matching ${dayOfWeek} (direct check)`);
+      }
+    }
+  });
+  
+  // Sort courses by time (handle time format variations)
+  courses.sort((a, b) => {
+    try {
+      const timeA = a.schedule.split(' ')[0];
+      const timeB = b.schedule.split(' ')[0];
+      return timeA.localeCompare(timeB);
+    } catch (error) {
+      console.warn('Error sorting courses by time:', error);
+      return 0;
+    }
+  });
+  
+  console.log(`Final courses for ${dayOfWeek}:`, courses.map(c => c.name));
   return courses;
 }
 
@@ -426,7 +483,7 @@ function renderScheduleContainer(containerId, courses, isToday = false) {
     container.innerHTML = `
       <div class="schedule-item no-classes">
         <div class="course-info">
-          <div class="course-name">No Classes Today</div>
+          <div class="course-name">No Weekend Classes</div>
           <div class="instructor">Enjoy your free time!</div>
         </div>
       </div>
@@ -434,53 +491,52 @@ function renderScheduleContainer(containerId, courses, isToday = false) {
     return;
   }
   
-  container.innerHTML = courses.map(course => {
-    let meetingInfo = '';
-    if (course.meetingLink) {
-      meetingInfo = `
-        <div class="meeting-info">
-          <a href="${course.meetingLink}" target="_blank" class="meeting-link-small">
-            ${course.platform === 'Zoom' ? 'Join Zoom Meeting' : 'Join Meeting'}
-          </a>
+  container.innerHTML = `
+    <div class="schedule-note">
+      <p>📅 This schedule shows all courses scheduled for Saturday and Sunday</p>
+    </div>
+    ${courses.map(course => {
+      let meetingInfo = '';
+      if (course.meetingLink) {
+        meetingInfo = `
+          <div class="meeting-info">
+            <a href="${course.meetingLink}" target="_blank" class="meeting-link-small">
+              ${course.platform === 'Zoom' ? 'Join Zoom Meeting' : 'Join Meeting'}
+            </a>
+          </div>
+        `;
+      }
+      
+      let statusBadge = '';
+      if (course.startDate && course.startDate.includes('Starting today')) {
+        statusBadge = '<div class="status-badge">Starting Today</div>';
+      }
+      
+      return `
+        <div class="schedule-item">
+          <div class="time">${course.schedule}</div>
+          <div class="course-info">
+            <div class="course-name">${course.name}</div>
+            <div class="instructor">${course.instructors.join(', ')}</div>
+            ${meetingInfo}
+            ${statusBadge}
+          </div>
         </div>
       `;
-    }
-    
-    let statusBadge = '';
-    if (isToday && course.startDate && course.startDate.includes('First Class')) {
-      statusBadge = '<div class="status-badge">First Class</div>';
-    }
-    
-    return `
-      <div class="schedule-item">
-        <div class="time">${course.schedule}</div>
-        <div class="course-info">
-          <div class="course-name">${course.name}</div>
-          <div class="instructor">${course.instructors.join(', ')}</div>
-          ${meetingInfo}
-          ${statusBadge}
-        </div>
-      </div>
-    `;
-  }).join('');
+    }).join('')}
+  `;
 }
 
 function updateDashboardSchedules() {
-  const today = new Date();
-  const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() + 1);
+  console.log('=== SCHEDULE UPDATE ===');
   
-  console.log('Current date:', today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
-  console.log('Tomorrow date:', tomorrow.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+  // Get all weekend courses (Saturday and Sunday)
+  const weekendCourses = getWeekendCourses();
   
-  const todayCourses = getCoursesForDay(today);
-  const tomorrowCourses = getCoursesForDay(tomorrow);
+  console.log('Weekend courses:', weekendCourses.map(c => `${c.name} (${c.schedule})`));
+  console.log('=== END SCHEDULE UPDATE ===');
   
-  console.log('Today courses:', todayCourses);
-  console.log('Tomorrow courses:', tomorrowCourses);
-  
-  renderScheduleContainer('today-schedule-container', todayCourses, true);
-  renderScheduleContainer('tomorrow-schedule-container', tomorrowCourses, false);
+  renderScheduleContainer('weekend-schedule-container', weekendCourses, false);
 }
 
 // Initialize application

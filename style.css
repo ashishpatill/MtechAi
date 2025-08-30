@@ -832,8 +832,10 @@ select.form-control {
 /* Dashboard */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-24);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 /* Upcoming blocks */
@@ -915,14 +917,14 @@ select.form-control {
   font-size: var(--font-size-xl);
 }
 
-.today-schedule, .tomorrow-schedule {
+.weekend-schedule {
   background: var(--color-bg-3);
   border-radius: var(--radius-lg);
   padding: var(--space-24);
   border: 1px solid var(--color-card-border);
 }
 
-.today-schedule h3, .tomorrow-schedule h3 {
+.weekend-schedule h3 {
   margin-bottom: var(--space-16);
   color: var(--color-text);
 }

@@ -257,6 +257,24 @@ function renderSubjectPage(courseId) {
     ? `<ul>${course.textbooks.map(book => `<li>${book}</li>`).join('')}</ul>`
     : '';
 
+  const bookLinksHtml = (course.bookLinks && course.bookLinks.length)
+    ? `<div class="book-links">
+        <h4>Downloadable Books & Materials</h4>
+        <ul>${course.bookLinks.map(book => `
+          <li><a href="${book.url}" target="_blank" class="book-link">📖 ${book.name}</a></li>
+        `).join('')}</ul>
+      </div>`
+    : '';
+
+  const lectureLinksHtml = (course.lectureLinks && course.lectureLinks.length)
+    ? `<div class="lecture-links">
+        <h4>Lecture Materials</h4>
+        <ul>${course.lectureLinks.map(lecture => `
+          <li><a href="${lecture.url}" target="_blank" class="lecture-link">📊 ${lecture.name}</a></li>
+        `).join('')}</ul>
+      </div>`
+    : '';
+
   const modulesHtml = (course.modules || []).map(module => `
     <li>
       <strong>${module.name}</strong>
@@ -289,6 +307,8 @@ function renderSubjectPage(courseId) {
         <h3>Overview</h3>
         ${course.objectives ? `<p>${course.objectives}</p>` : ''}
         ${textbooksHtml ? `<div class="subject-books"><h4>Textbooks</h4>${textbooksHtml}</div>` : ''}
+        ${bookLinksHtml ? bookLinksHtml : ''}
+        ${lectureLinksHtml ? lectureLinksHtml : ''}
       </section>
 
       <section class="subject-modules">

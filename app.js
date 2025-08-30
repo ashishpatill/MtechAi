@@ -143,9 +143,23 @@ const courseData = {
     "status": "Confirmed Schedule - Starting Aug 24",
     "color": "#FF9800",
     "objectives": "Master GPU architectures and parallel computing paradigms. Apply GPGPU knowledge to AI/ML problems.",
+    "lmsLink": "https://iitjodhpur.futurense.com/course/view.php?id=251",
+    "syllabus": "The GPU Programming course at IIT Jodhpur provides a comprehensive exploration of parallel computing using GPUs. The curriculum is designed to equip students with the knowledge and skills to develop, debug, and optimize GPU-accelerated applications. The course is offered as an elective to B.Tech, M.Tech, and Ph.D. students in Computer Science and Engineering (CSE) and Artificial Intelligence (AI).\n\nDetailed Course Content:\n\nThe course is structured to cover the following key areas in detail:\n\n1. Foundational Concepts:\n   • Introduction to Parallelism: The course begins with the history and evolution of parallel computing, highlighting the need for accelerators like GPUs. It contrasts the architectural differences between CPUs and GPUs, explaining why GPUs are well-suited for data-parallel tasks.\n   • GPU Architecture: A deep dive into the hardware architecture of modern GPUs. This includes the organization of Streaming Multiprocessors (SMs), the hierarchy of memory (global, shared, local, constant, and texture), and the underlying execution model.\n\n2. Programming Models and Languages:\n   • CUDA (Compute Unified Device Architecture): A significant portion of the course is dedicated to programming in CUDA C/C++. Key concepts include:\n     - Kernels: Functions that execute in parallel on the GPU.\n     - Grids, Blocks, and Threads: The hierarchical structure used to manage parallel execution.\n     - Data Transfer: Techniques for moving data between the host (CPU) and the device (GPU).\n   • OpenCL (Open Computing Language): An alternative open standard for parallel programming across heterogeneous platforms, including GPUs from various vendors. The course covers the similarities and differences between OpenCL and CUDA.\n\n3. Memory and Synchronization:\n   • Memory Management: Strategies for efficient memory usage are crucial for GPU performance. This includes understanding and managing different memory spaces to minimize data transfer overhead and maximize bandwidth.\n   • Synchronization Primitives: Techniques to coordinate the execution of threads, such as barriers and atomic operations, are covered to ensure data consistency and avoid race conditions in parallel algorithms.\n\n4. Advanced Topics and Applications:\n   • Parallel Algorithms: The course explores the implementation of fundamental parallel algorithms on GPUs, such as reduction, prefix sum (scan), and matrix multiplication.\n   • Debugging and Profiling: Students learn to use tools like NVIDIA's Nsight to debug and profile their GPU programs, identify performance bottlenecks, and optimize their code for maximum efficiency.\n   • Case Studies: The course often includes case studies demonstrating the application of GPU programming in various domains, including:\n     - Image and video processing\n     - Scientific computing and simulations\n     - Machine learning and deep learning, where GPUs are instrumental in training large neural networks.\n\n5. Learning Outcomes:\n   Upon successful completion of the course, students are expected to be able to:\n   • Explain the fundamental concepts of GPU architecture and parallel programming.\n   • Develop and implement parallel programs using CUDA and/or OpenCL.\n   • Analyze, debug, and profile GPU applications to optimize performance.\n\nThe course has a credit structure of 3-0-0, indicating three lecture hours per week with no tutorial or practical sessions as part of the formal course structure, though assignments provide hands-on experience. The primary textbook for the course is often 'Programming Massively Parallel Processors' by David B. Kirk and Wen-mei W. Hwu.",
     "textbooks": [
       "Programming Massively Parallel Processors - Kirk & Hwu (4th Edition)",
       "CUDA by Example - Sanders & Kandrot"
+    ],
+    "lectureLinks": [
+      {
+        "name": "Lecture 1 Slides",
+        "url": "https://iitjodhpur.futurense.com/mod/resource/view.php?id=7303"
+      }
+    ],
+    "bookLinks": [
+      {
+        "name": "Programming Massively Parallel Processors (PDF)",
+        "url": "https://iitjodhpur.futurense.com/pluginfile.php/24710/mod_resource/content/3/programming_massively_parallel_processors.pdf"
+      }
     ],
     "modules": [
       {
@@ -326,41 +340,7 @@ function renderDashboardUpcoming() {
   });
 }
 
-// Study planner functionality - personal use only
-function initializeStudyPlanner() {
-  console.log('Initializing study planner...');
-  
-  const prevWeekBtn = document.getElementById('prev-week');
-  const nextWeekBtn = document.getElementById('next-week');
-  const currentWeekLabel = document.getElementById('current-week');
-  
-  if (!prevWeekBtn || !nextWeekBtn || !currentWeekLabel) {
-    console.log('Study planner elements not found');
-    return;
-  }
-  
-  let currentWeekStart = new Date(2025, 7, 23); // Aug 23, 2025 (Saturday)
-  
-  function updateWeekDisplay() {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const weekStart = currentWeekStart.toLocaleDateString('en-US', options);
-    currentWeekLabel.textContent = `Week of ${weekStart}`;
-  }
-  
-  prevWeekBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    currentWeekStart.setDate(currentWeekStart.getDate() - 7);
-    updateWeekDisplay();
-  });
-  
-  nextWeekBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    currentWeekStart.setDate(currentWeekStart.getDate() + 7);
-    updateWeekDisplay();
-  });
-  
-  updateWeekDisplay();
-}
+
 
 // Dynamic schedule functions
 
@@ -469,7 +449,6 @@ document.addEventListener('DOMContentLoaded', function() {
   buildNavigationFromCourses();
   initializeNavigation();
   initSubjectSubtabs();
-  initializeStudyPlanner();
   
   // Initialize dynamic schedules
   updateDashboardSchedules();

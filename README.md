@@ -153,7 +153,7 @@ The dashboard is built with CSS custom properties (variables) for easy customiza
 
 ## 👨‍💻 Author
 
-**Ashish Pisey**
+**Ashish P**
 - **Student ID**: G24AIT2158
 - **Program**: MTech AI
 

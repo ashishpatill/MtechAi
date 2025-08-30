@@ -8,6 +8,7 @@ const courseData = {
     "days": ["Saturday", "Sunday"],
     "classroomCode": "hijxvrwt",
     "platform": "Google Classroom",
+    "meetingLink": "https://meet.google.com/qee-cfqi-qqp",
     "startDate": "Aug 24 (Sunday)",
     "status": "Starting tomorrow",
     "color": "#4285F4",

@@ -93,7 +93,7 @@ const courseData = {
     "name": "Cyber Security - Elective 1",
     "instructors": ["Dr. Nitin Awathare"],
     "schedule": "9:45 - 11:15",
-    "days": "TBD",
+    "days": ["Saturday", "Sunday"],
     "platform": "Google Classroom",
     "classroomCode": "TBD",
     "lmsLink": "https://iitjodhpur.futurense.com/course/view.php?id=253",
@@ -239,19 +239,14 @@ function renderSubjectPage(courseId) {
 
   const meetingLinks = course.meetingLinks || (course.meetingLink ? [course.meetingLink] : []);
 
-  const meetingsHtml = meetingLinks.length
-    ? `<div class="meeting-buttons">
-        ${meetingLinks.map(link => `
-          <a href="${link}" target="_blank" class="btn btn--primary join-meeting-btn">
-            🎥 Join Meeting
-          </a>
-        `).join('')}
-        <div class="meeting-info">
-          <p><strong>Platform:</strong> ${course.platform}</p>
-          <p><strong>Meeting Link:</strong> <a href="${course.meetingLink}" target="_blank" class="meeting-link-text">${course.meetingLink}</a></p>
-        </div>
-      </div>`
-    : '<p>No meeting information available yet.</p>';
+  const meetingsHtml = course.meetingLink ? `
+    <div class="meeting-details">
+      <h4>Meeting Information</h4>
+      <p><strong>Platform:</strong> ${course.platform}</p>
+      <p><strong>Meeting Link:</strong> <a href="${course.meetingLink}" target="_blank" class="meeting-link-text">${course.meetingLink}</a></p>
+      <a href="${course.meetingLink}" target="_blank" class="btn btn--primary">Join Meeting</a>
+    </div>
+  ` : '<p>No meeting information available yet.</p>';
 
   container.innerHTML = `
     <div class="subject-header">

@@ -159,7 +159,7 @@ const courseData = {
     "lectureLinks": [
       {
         "name": "Lecture 1 Slides",
-        "url": "https://iitjodhpur.futurense.com/mod/resource/view.php?id=7303"
+        "url": "https://iitjodhpur.futurense.com/pluginfile.php/24709/mod_resource/content/2/GPU_Programming_Lect01.pptx"
       }
     ],
     "bookLinks": [

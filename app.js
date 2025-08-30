@@ -18,6 +18,12 @@ const courseData = {
       "Artificial Intelligence: A Modern Approach - Russell & Norvig (4th Edition)",
       "Intelligent Planning: A decomposition and abstraction based approach - Q. Yang"
     ],
+    "bookLinks": [
+      {
+        "name": "Advanced AI Course Materials",
+        "url": "https://drive.google.com/file/d/18Vpe5jgaxU192y0rU9W4YMW9wWLFNPPo/view"
+      }
+    ],
     "modules": [
       {
         "name": "Decision Making",

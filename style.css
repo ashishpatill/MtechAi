@@ -987,6 +987,18 @@ select.form-control {
   display: inline-block;
 }
 
+.day-badge {
+  background: var(--color-bg-2);
+  color: var(--color-text);
+  padding: var(--space-2) var(--space-8);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  margin-top: var(--space-4);
+  display: inline-block;
+  border: 1px solid var(--color-card-border);
+}
+
 .schedule-item.no-classes {
   background: var(--color-bg-2);
   border: 1px dashed var(--color-card-border);
@@ -1233,6 +1245,41 @@ select.form-control {
 }
 
 /* Subject Page Styles */
+.subject-header {
+  margin-bottom: var(--space-24);
+}
+
+.subject-header h2 {
+  margin-bottom: var(--space-8);
+  color: var(--color-text);
+  font-size: var(--font-size-3xl);
+}
+
+.day-indicator {
+  background: var(--color-bg-2);
+  color: var(--color-text);
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  display: inline-block;
+  margin-bottom: var(--space-16);
+  border: 1px solid var(--color-card-border);
+}
+
+.subject-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.subject-meta > div {
+  padding: var(--space-8);
+  background: var(--color-bg-1);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-card-border);
+}
+
 .subject-sections {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

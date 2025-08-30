@@ -337,9 +337,15 @@ function renderSubjectPage(courseId) {
     </div>
   ` : '<p>No quick links available yet.</p>';
 
+  // Add day indicator for Saturday-only courses
+  const dayIndicator = course.days && course.days.length === 1 && course.days[0] === 'Saturday' 
+    ? '<div class="day-indicator">📅 Saturday Only</div>' 
+    : '';
+
   container.innerHTML = `
     <div class="subject-header">
       <h2>${course.name}</h2>
+      ${dayIndicator}
       <div class="subject-meta">
         <div><strong>Instructors:</strong> ${instructors || ''}</div>
         <div><strong>Status:</strong> ${course.status || ''}</div>
@@ -518,6 +524,12 @@ function renderScheduleContainer(containerId, courses, isToday = false) {
         statusBadge = '<div class="status-badge">Starting Today</div>';
       }
       
+      // Add day indicator for Saturday-only courses
+      let dayBadge = '';
+      if (course.days && course.days.length === 1 && course.days[0] === 'Saturday') {
+        dayBadge = '<div class="day-badge">📅 Saturday Only</div>';
+      }
+      
       return `
         <div class="schedule-item">
           <div class="time">${course.schedule}</div>
@@ -526,6 +538,7 @@ function renderScheduleContainer(containerId, courses, isToday = false) {
             <div class="instructor">${course.instructors.join(', ')}</div>
             ${meetingInfo}
             ${statusBadge}
+            ${dayBadge}
           </div>
         </div>
       `;

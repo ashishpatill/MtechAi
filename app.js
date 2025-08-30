@@ -29,6 +29,12 @@ const courseData = {
         "url": "https://drive.google.com/file/d/1yL_p5-KSAEPMgiAKMUDASS9jlB_yWCIN"
       }
     ],
+    "lectureLinks": [
+      {
+        "name": "Lecture 1 Slides",
+        "url": "https://drive.google.com/file/d/1yL_p5-KSAEPMgiAKMUDASS9jlB_yWCIN"
+      }
+    ],
     "modules": [
       {
         "name": "Decision Making",

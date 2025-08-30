@@ -86,6 +86,7 @@ This dashboard provides MTech AI students with:
 ### Advanced AI Course Materials
 - **Course Materials**: [Advanced AI Course Materials](https://drive.google.com/file/d/18Vpe5jgaxU192y0rU9W4YMW9wWLFNPPo/view)
 - **Textbook**: [Advanced AI Textbook](https://drive.google.com/file/d/1yL_p5-KSAEPMgiAKMUDASS9jlB_yWCIN)
+- **Lecture Slides**: [Lecture 1 Slides](https://drive.google.com/file/d/1yL_p5-KSAEPMgiAKMUDASS9jlB_yWCIN)
 
 ## 🛠️ Technology Stack
 

@@ -73,6 +73,7 @@ const courseData = {
     "days": ["Saturday only"],
     "platform": "Google Classroom",
     "classroomCode": "zy3yovsw",
+    "lmsLink": "https://iitjodhpur.futurense.com/course/view.php?id=218",
     "startDate": "Aug 30",
     "status": "Starts next week",
     "color": "#9C27B0",

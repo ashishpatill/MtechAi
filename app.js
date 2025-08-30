@@ -240,8 +240,18 @@ function renderSubjectPage(courseId) {
   const meetingLinks = course.meetingLinks || (course.meetingLink ? [course.meetingLink] : []);
 
   const meetingsHtml = meetingLinks.length
-    ? `<ul>${meetingLinks.map(link => `<li><a href="${link}" target="_blank">Join Meeting</a></li>`).join('')}</ul>`
-    : '';
+    ? `<div class="meeting-buttons">
+        ${meetingLinks.map(link => `
+          <a href="${link}" target="_blank" class="btn btn--primary join-meeting-btn">
+            🎥 Join Meeting
+          </a>
+        `).join('')}
+        <div class="meeting-info">
+          <p><strong>Platform:</strong> ${course.platform}</p>
+          <p><strong>Meeting Link:</strong> <a href="${course.meetingLink}" target="_blank" class="meeting-link-text">${course.meetingLink}</a></p>
+        </div>
+      </div>`
+    : '<p>No meeting information available yet.</p>';
 
   container.innerHTML = `
     <div class="subject-header">

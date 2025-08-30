@@ -1334,3 +1334,43 @@ select.form-control {
 .meeting-details .btn {
   margin-top: 1rem;
 }
+
+/* Meeting Buttons Section */
+.meeting-buttons {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.meeting-buttons .join-meeting-btn {
+  margin-bottom: 1.5rem;
+}
+
+.meeting-info {
+  text-align: left;
+  background: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.meeting-info p {
+  margin: 0 0 0.75rem 0;
+  color: var(--color-text-secondary);
+}
+
+.meeting-info p:last-child {
+  margin-bottom: 0;
+}
+
+.meeting-link-text {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-family: var(--font-family-mono);
+  font-size: 0.875rem;
+  word-break: break-all;
+}
+
+.meeting-link-text:hover {
+  text-decoration: underline;
+}

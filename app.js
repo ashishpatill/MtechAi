@@ -1,3 +1,51 @@
+// Course links data structure
+const courseLinks = {
+  "aai": {
+    "textbooks": [
+      { "name": "Advanced AI Course Materials", "url": "https://drive.google.com/file/d/18Vpe5jgaxU192y0rU9W4YMW9wWLFNPPo/view" },
+      { "name": "Advanced AI Textbook", "url": "https://drive.google.com/file/d/1yL_p5-KSAEPMgiAKMUDASS9jlB_yWCIN" }
+    ],
+    "lectureSlides": [
+      { "name": "Lecture 1 Slides", "url": "https://drive.google.com/file/d/1yL_p5-KSAEPMgiAKMUDASS9jlB_yWCIN" }
+    ],
+    "notes": [],
+    "assignments": [],
+    "quizzes": []
+  },
+  "epl": {
+    "textbooks": [],
+    "lectureSlides": [],
+    "notes": [],
+    "assignments": [],
+    "quizzes": []
+  },
+  "iip": {
+    "textbooks": [],
+    "lectureSlides": [],
+    "notes": [],
+    "assignments": [],
+    "quizzes": []
+  },
+  "cs": {
+    "textbooks": [],
+    "lectureSlides": [],
+    "notes": [],
+    "assignments": [],
+    "quizzes": []
+  },
+  "gpu": {
+    "textbooks": [
+      { "name": "Programming Massively Parallel Processors (PDF)", "url": "https://iitjodhpur.futurense.com/pluginfile.php/24710/mod_resource/content/3/programming_massively_parallel_processors.pdf" }
+    ],
+    "lectureSlides": [
+      { "name": "Lecture 1 Slides", "url": "https://iitjodhpur.futurense.com/pluginfile.php/24709/mod_resource/content/2/GPU_Programming_Lect01.pptx" }
+    ],
+    "notes": [],
+    "assignments": [],
+    "quizzes": []
+  }
+};
+
 // Verified course data from IIT Jodhpur MTech AI Trimester 3
 const courseData = {
   "aai": {
@@ -19,22 +67,7 @@ const courseData = {
       "Artificial Intelligence: A Modern Approach - Russell & Norvig (4th Edition)",
       "Intelligent Planning: A decomposition and abstraction based approach - Q. Yang"
     ],
-    "bookLinks": [
-      {
-        "name": "Advanced AI Course Materials",
-        "url": "https://drive.google.com/file/d/18Vpe5jgaxU192y0rU9W4YMW9wWLFNPPo/view"
-      },
-      {
-        "name": "Advanced AI Textbook",
-        "url": "https://drive.google.com/file/d/1yL_p5-KSAEPMgiAKMUDASS9jlB_yWCIN"
-      }
-    ],
-    "lectureLinks": [
-      {
-        "name": "Lecture 1 Slides",
-        "url": "https://drive.google.com/file/d/1yL_p5-KSAEPMgiAKMUDASS9jlB_yWCIN"
-      }
-    ],
+
     "modules": [
       {
         "name": "Decision Making",
@@ -176,18 +209,7 @@ const courseData = {
       "Programming Massively Parallel Processors - Kirk & Hwu (4th Edition)",
       "CUDA by Example - Sanders & Kandrot"
     ],
-    "lectureLinks": [
-      {
-        "name": "Lecture 1 Slides",
-        "url": "https://iitjodhpur.futurense.com/pluginfile.php/24709/mod_resource/content/2/GPU_Programming_Lect01.pptx"
-      }
-    ],
-    "bookLinks": [
-      {
-        "name": "Programming Massively Parallel Processors (PDF)",
-        "url": "https://iitjodhpur.futurense.com/pluginfile.php/24710/mod_resource/content/3/programming_massively_parallel_processors.pdf"
-      }
-    ],
+
     "modules": [
       {
         "name": "GPU Architecture",
@@ -276,27 +298,71 @@ function renderSubjectPage(courseId) {
   const instructors = Array.isArray(course.instructors) ? course.instructors.join(', ') : course.instructors;
   const days = Array.isArray(course.days) ? course.days.join(', ') : course.days;
 
-  const textbooksHtml = (course.textbooks && course.textbooks.length)
-    ? `<ul>${course.textbooks.map(book => `<li>${book}</li>`).join('')}</ul>`
-    : '';
-
-  const bookLinksHtml = (course.bookLinks && course.bookLinks.length)
-    ? `<div class="book-links">
-        <h4>Downloadable Books & Materials</h4>
-        <ul>${course.bookLinks.map(book => `
-          <li><a href="${book.url}" target="_blank" class="book-link">📖 ${book.name}</a></li>
+  // Get course links from the centralized structure
+  const links = courseLinks[courseId] || {};
+  
+  // Build course materials sections dynamically
+  const materialsSections = [];
+  
+  // Textbooks section
+  if (links.textbooks && links.textbooks.length > 0) {
+    materialsSections.push(`
+      <div class="materials-section">
+        <h4>📚 Textbooks & Books</h4>
+        <ul>${links.textbooks.map(book => `
+          <li><a href="${book.url}" target="_blank" class="material-link">📖 ${book.name}</a></li>
         `).join('')}</ul>
-      </div>`
-    : '';
-
-  const lectureLinksHtml = (course.lectureLinks && course.lectureLinks.length)
-    ? `<div class="lecture-links">
-        <h4>Lecture Materials</h4>
-        <ul>${course.lectureLinks.map(lecture => `
-          <li><a href="${lecture.url}" target="_blank" class="lecture-link">📊 ${lecture.name}</a></li>
+      </div>
+    `);
+  }
+  
+  // Lecture slides section
+  if (links.lectureSlides && links.lectureSlides.length > 0) {
+    materialsSections.push(`
+      <div class="materials-section">
+        <h4>📊 Lecture Slides</h4>
+        <ul>${links.lectureSlides.map(slide => `
+          <li><a href="${slide.url}" target="_blank" class="material-link">📊 ${slide.name}</a></li>
         `).join('')}</ul>
-      </div>`
-    : '';
+      </div>
+    `);
+  }
+  
+  // Notes section
+  if (links.notes && links.notes.length > 0) {
+    materialsSections.push(`
+      <div class="materials-section">
+        <h4>📝 Notes</h4>
+        <ul>${links.notes.map(note => `
+          <li><a href="${note.url}" target="_blank" class="material-link">📝 ${note.name}</a></li>
+        `).join('')}</ul>
+      </div>
+    `);
+  }
+  
+  // Assignments section
+  if (links.assignments && links.assignments.length > 0) {
+    materialsSections.push(`
+      <div class="materials-section">
+        <h4>📋 Assignments</h4>
+        <ul>${links.assignments.map(assignment => `
+          <li><a href="${assignment.url}" target="_blank" class="material-link">📋 ${assignment.name}</a></li>
+        `).join('')}</ul>
+      </div>
+    `);
+  }
+  
+  // Quizzes section
+  if (links.quizzes && links.quizzes.length > 0) {
+    materialsSections.push(`
+      <div class="materials-section">
+        <h4>🧪 Quizzes</h4>
+        <ul>${links.quizzes.map(quiz => `
+          <li><a href="${quiz.url}" target="_blank" class="material-link">🧪 ${quiz.name}</a></li>
+        `).join('')}</ul>
+      </div>
+    `);
+  }
 
   const modulesHtml = (course.modules || []).map(module => `
     <li>
@@ -361,10 +427,17 @@ function renderSubjectPage(courseId) {
       <section class="subject-overview">
         <h3>Overview</h3>
         ${course.objectives ? `<p>${course.objectives}</p>` : ''}
-        ${textbooksHtml ? `<div class="subject-books"><h4>Textbooks</h4>${textbooksHtml}</div>` : ''}
-        ${bookLinksHtml ? bookLinksHtml : ''}
-        ${lectureLinksHtml ? lectureLinksHtml : ''}
+        ${course.textbooks && course.textbooks.length ? `<div class="subject-books"><h4>Textbooks</h4><ul>${course.textbooks.map(book => `<li>${book}</li>`).join('')}</ul></div>` : ''}
       </section>
+
+      ${materialsSections.length > 0 ? `
+        <section class="subject-materials">
+          <h3>📚 Course Materials</h3>
+          <div class="materials-grid">
+            ${materialsSections.join('')}
+          </div>
+        </section>
+      ` : ''}
 
       <section class="subject-modules">
         <h3>Modules & Topics</h3>

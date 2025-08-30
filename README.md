@@ -100,13 +100,8 @@ This dashboard provides MTech AI students with:
 ### Local Development
 1. **Clone the repository**
    ```bash
-<<<<<<< HEAD
-   git clone https://github.com/ashishpatill/MTechAi.git
-   cd MTechAi
-=======
    git clone https://github.com/ashishpatill/MtechAi.git
    cd Mtech-Ai
->>>>>>> fd2add364f9e50ee08f3e1e4b5ef9eb42ce46c2a
    ```
 
 2. **Open in browser**

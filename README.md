@@ -56,7 +56,7 @@ This dashboard provides MTech AI students with:
    - **Google Classroom Code**: hijxvrwt
 
 2. **Ethics and Professional Life**
-   - **Instructor**: Dr. Dinesh Mohan
+   - **Instructor**: Dr. Dinesh Joshi
    - **Schedule**: 5:00 PM – 6:30 PM (Sat, Sun)
    - **Status**: Active (Started Aug 23)
    - **Google Classroom Code**: zqvcgcui

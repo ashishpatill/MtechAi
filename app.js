@@ -47,7 +47,7 @@ const courseData = {
   "epl": {
     "id": "epl",
     "name": "Ethics and Professional Life",
-    "instructors": ["Dr. Dinesh Mohan"],
+    "instructors": ["Dr. Dinesh Joshi"],
     "schedule": "5:00 PM – 6:30 PM",
     "days": ["Saturday", "Sunday"],
     "platform": "Google Classroom",
@@ -441,6 +441,71 @@ function getWeekendCourses() {
   
   console.log(`Final weekend courses:`, courses.map(c => c.name));
   return courses;
+}
+
+function getCurrentTimeStatus() {
+  const now = new Date();
+  const currentDay = now.toLocaleDateString('en-US', { weekday: 'long' });
+  const currentTime = now.getHours() * 60 + now.getMinutes(); // Convert to minutes
+  
+  // Check if it's weekend
+  if (currentDay !== 'Saturday' && currentDay !== 'Sunday') {
+    return { currentClass: null, nextClass: null };
+  }
+  
+  const weekendCourses = getWeekendCourses();
+  let currentClass = null;
+  let nextClass = null;
+  
+  for (const course of weekendCourses) {
+    const courseTime = parseCourseTime(course.schedule);
+    if (!courseTime) continue;
+    
+    const courseStartMinutes = courseTime.startMinutes;
+    const courseEndMinutes = courseTime.endMinutes;
+    
+    // Check if this course is currently running
+    if (currentTime >= courseStartMinutes && currentTime <= courseEndMinutes) {
+      currentClass = course;
+    }
+    // Check if this is the next upcoming class
+    else if (currentTime < courseStartMinutes && !nextClass) {
+      nextClass = course;
+    }
+  }
+  
+  return { currentClass, nextClass };
+}
+
+function parseCourseTime(schedule) {
+  try {
+    // Handle different time formats: "11:30 AM – 1:00 PM", "8:00 AM - 9:30 AM"
+    const timeMatch = schedule.match(/(\d{1,2}):(\d{2})\s*(AM|PM)\s*[–-]\s*(\d{1,2}):(\d{2})\s*(AM|PM)/);
+    if (!timeMatch) return null;
+    
+    const startHour = parseInt(timeMatch[1]);
+    const startMinute = parseInt(timeMatch[2]);
+    const startPeriod = timeMatch[3];
+    const endHour = parseInt(timeMatch[4]);
+    const endMinute = parseInt(timeMatch[5]);
+    const endPeriod = timeMatch[6];
+    
+    // Convert to 24-hour format
+    let start24Hour = startHour;
+    let end24Hour = endHour;
+    
+    if (startPeriod === 'PM' && startHour !== 12) start24Hour += 12;
+    if (startPeriod === 'AM' && startHour === 12) start24Hour = 0;
+    if (endPeriod === 'AM' && endHour === 12) end24Hour = 0;
+    
+    const startMinutes = start24Hour * 60 + startMinute;
+    const endMinutes = end24Hour * 60 + endMinute;
+    
+    return { startMinutes, endMinutes };
+  } catch (error) {
+    console.warn('Error parsing course time:', schedule, error);
+    return null;
+  }
 }
 
 function getCoursesForDay(targetDate) {

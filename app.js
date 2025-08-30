@@ -77,6 +77,7 @@ const courseData = {
     "classroomCode": "zy3yovsw",
     "lmsLink": "https://iitjodhpur.futurense.com/course/view.php?id=218",
     "classroomLink": "https://classroom.google.com/c/Nzk5NTU2MzQ2NzAw",
+    "meetingLink": "https://meet.google.com/jwx-qdgs-nkb",
     "startDate": "Aug 30",
     "status": "Starts next week",
     "color": "#9C27B0",

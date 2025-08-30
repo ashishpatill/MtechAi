@@ -286,7 +286,13 @@ function renderSubjectPage(courseId) {
 
       <div class="subtabs">
         <button class="subtab active" data-panel="subject-schedule">Schedule</button>
-        <button class="subtab" data-panel="subject-meetings">Meeting Links</button>
+        ${course.meetingLink ? `
+          <a href="${course.meetingLink}" target="_blank" class="subtab join-meeting-tab">
+            🎥 Join Meeting
+          </a>
+        ` : `
+          <button class="subtab" data-panel="subject-meetings">Meeting Info</button>
+        `}
       </div>
       <div id="subject-schedule" class="subtab-panel" style="display:block;">
         <div><strong>Days:</strong> ${days || ''}</div>

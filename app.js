@@ -340,31 +340,7 @@ function initializeStudyPlanner() {
 }
 
 // Dynamic schedule functions
-function updateCurrentDateTime() {
-  const now = new Date();
-  const dateOptions = { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  };
-  const timeOptions = { 
-    hour: '2-digit', 
-    minute: '2-digit', 
-    second: '2-digit',
-    hour12: true 
-  };
-  
-  const dateDisplay = document.getElementById('current-date-display');
-  const timeDisplay = document.getElementById('current-time-display');
-  
-  if (dateDisplay) {
-    dateDisplay.textContent = now.toLocaleDateString('en-US', dateOptions);
-  }
-  if (timeDisplay) {
-    timeDisplay.textContent = now.toLocaleTimeString('en-US', timeOptions);
-  }
-}
+
 
 function getCoursesForDay(targetDate) {
   const dayOfWeek = targetDate.toLocaleDateString('en-US', { weekday: 'long' });
@@ -460,9 +436,6 @@ function updateDashboardSchedules() {
   
   renderScheduleContainer('today-schedule-container', todayCourses, true);
   renderScheduleContainer('tomorrow-schedule-container', tomorrowCourses, false);
-  
-  // Update current date and time
-  updateCurrentDateTime();
 }
 
 // Initialize application

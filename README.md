@@ -19,6 +19,10 @@ This dashboard provides MTech AI students with:
 - **Study Planner**: Personal study planning tool for weekdays
 - **Course Details**: Detailed information about each course including objectives, modules, and textbooks
 
+## ⚠️ Important Update
+
+**Software and Data Engineering course has been cancelled.** The schedule has been updated accordingly. Cyber Security course day is still TBD and will be updated once confirmed by the professor.
+
 ## 🎯 Features
 
 ### 📅 Schedule Management
@@ -45,36 +49,37 @@ This dashboard provides MTech AI students with:
 ## 📚 Course Information
 
 ### Active Courses (Started/Starting)
-1. **Advanced Artificial Intelligence**
+1. **Advanced Artificial Intelligence/Autonomous System**
    - **Instructor**: Dr. Vignesh, Dr. Dipanjan Roy
    - **Schedule**: 11:30 AM – 1:00 PM (Sat, Sun)
    - **Status**: Starting Sunday, Aug 24
+   - **Google Classroom Code**: hijxvrwt
 
 2. **Ethics and Professional Life**
    - **Instructor**: Dr. Dinesh Mohan
    - **Schedule**: 5:00 PM – 6:30 PM (Sat, Sun)
    - **Status**: Active (Started Aug 23)
+   - **Google Classroom Code**: zqvcgcui
 
 3. **Innovation and IP Management**
    - **Instructor**: Dr. Manu Kanchan, Dr. Deepak Saxena
    - **Schedule**: 1:30-3:00 PM (Saturday only)
    - **Status**: Starting Saturday, Aug 30
+   - **Google Classroom Code**: zy3yovsw
 
-### Pending Courses
-4. **Software and Data Engineering**
-   - **Instructor**: Dr. Sumit Kalra
-   - **Status**: Starting Aug 30
+### Confirmed Elective Courses
+4. **GPU Programming - Elective 2**
+   - **Instructor**: Dr. Binod
+   - **Schedule**: 8:00 AM - 9:30 AM (Sat, Sun)
+   - **Platform**: Zoom/LMS
+   - **Status**: Confirmed - Starting Aug 24
 
-5. **Cyber Security**
+### Pending Schedule Details
+5. **Cyber Security - Elective 1**
    - **Instructor**: Dr. Nitin Awathare
-   - **Status**: Details Pending
-
-6. **GPU Programming**
-   - **Instructor**: TBD
-   - **Schedule**: 8:00 AM – 9:30 AM (Saturday & Sunday)
-   - **Platform**: Zoom
-   - **Meeting Link**: [GPU Programming Zoom](https://futurense.zoom.us/j/88040308066?pwd=yh69JD0Rd6IZefsW2hIXoiBgA3lTyI.1)
-   - **Status**: 3 Credit Course - Confirmed Schedule
+   - **Schedule**: 9:45 - 11:15 AM
+   - **Start Date**: Aug 30
+   - **Status**: Day TBD - To be confirmed by professor
 
 ## 🛠️ Technology Stack
 

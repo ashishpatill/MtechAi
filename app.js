@@ -95,10 +95,22 @@ const courseData = {
     "schedule": "9:45 - 11:15",
     "days": "TBD",
     "platform": "Google Classroom",
+    "classroomCode": "TBD",
+    "lmsLink": "https://iitjodhpur.futurense.com/course/view.php?id=253",
+    "meetingLink": "https://meet.google.com/svh-jwvr-avo",
     "startDate": "Aug 30",
     "status": "Schedule TBD - Day to be confirmed",
     "color": "#EA4335",
     "objectives": "Understand essential concepts of security, threats, and risk in digital environments. Gain practical skills in securing networks and systems.",
+    "marksDistribution": {
+      "Major Exam": "40%",
+      "Minor Exam": "20%",
+      "Quiz 1": "10%",
+      "Quiz 2": "10%",
+      "Assignment 1": "10%",
+      "Assignment 2": "10%"
+    },
+    "marksNote": "This distribution may change, subject to your performance and the time you take to accomplish a specific component. Note that whenever a change occurs, it will be applicable to the whole class and not confined to the individual.",
     "textbooks": [
       "Computer Security: Principles and Practice - Stallings & Brown",
       "Cryptography and Network Security - William Stallings",

@@ -10,6 +10,7 @@ const courseData = {
     "platform": "Google Classroom",
     "meetingLink": "https://meet.google.com/qee-cfqi-qqp",
     "classroomLink": "https://classroom.google.com/c/Nzk1Njk4NzIxMjEw",
+    "lmsLink": "https://iitjodhpur.futurense.com/course/view.php?id=218",
     "startDate": "Aug 24 (Sunday)",
     "status": "Starting tomorrow",
     "color": "#4285F4",
@@ -53,6 +54,7 @@ const courseData = {
     "meetingLink": "https://meet.google.com/dmh-kmuo-yib",
     "classroomCode": "zqvcgcui",
     "classroomLink": "https://classroom.google.com/c/Nzk5NTU2MzQ2NzAw",
+    "lmsLink": "https://iitjodhpur.futurense.com/course/view.php?id=218",
     "startDate": "Aug 23 (Saturday)",
     "status": "Starting today",
     "color": "#FBBC04",
@@ -156,6 +158,8 @@ const courseData = {
     "days": ["Saturday", "Sunday"],
     "platform": "Zoom/LMS",
     "meetingLink": "https://futurense.zoom.us/j/88040308066?pwd=yh69JD0Rd6IZefsW2hIXoiBgA3lTyI.1",
+    "classroomCode": "TBD",
+    "classroomLink": "https://classroom.google.com/c/ODAwNzE3ODIyMjc0",
     "startDate": "Aug 24",
     "status": "Confirmed Schedule - Starting Aug 24",
     "color": "#FF9800",
@@ -295,16 +299,43 @@ function renderSubjectPage(courseId) {
     </li>
   `).join('');
 
-  const meetingLinks = course.meetingLinks || (course.meetingLink ? [course.meetingLink] : []);
+  // Build quick links section
+  const quickLinks = [];
+  
+  if (course.meetingLink) {
+    quickLinks.push({
+      name: '🎥 Join Meeting',
+      url: course.meetingLink,
+      type: 'meeting'
+    });
+  }
+  
+  if (course.classroomLink && course.classroomCode !== 'TBD') {
+    quickLinks.push({
+      name: '📚 Google Classroom',
+      url: course.classroomLink,
+      type: 'classroom'
+    });
+  }
+  
+  if (course.lmsLink) {
+    quickLinks.push({
+      name: '🌐 LMS Portal',
+      url: course.lmsLink,
+      type: 'lms'
+    });
+  }
 
-  const meetingsHtml = course.meetingLink ? `
-    <div class="meeting-details">
-      <h4>Meeting Information</h4>
-      <p><strong>Platform:</strong> ${course.platform}</p>
-      <p><strong>Meeting Link:</strong> <a href="${course.meetingLink}" target="_blank" class="meeting-link-text">${course.meetingLink}</a></p>
-      <a href="${course.meetingLink}" target="_blank" class="btn btn--primary">Join Meeting</a>
+  const quickLinksHtml = quickLinks.length > 0 ? `
+    <div class="quick-links-grid">
+      ${quickLinks.map(link => `
+        <a href="${link.url}" target="_blank" class="quick-link-card ${link.type}">
+          <div class="quick-link-icon">${link.name.split(' ')[0]}</div>
+          <div class="quick-link-text">${link.name.split(' ').slice(1).join(' ')}</div>
+        </a>
+      `).join('')}
     </div>
-  ` : '<p>No meeting information available yet.</p>';
+  ` : '<p>No quick links available yet.</p>';
 
   container.innerHTML = `
     <div class="subject-header">
@@ -329,53 +360,28 @@ function renderSubjectPage(courseId) {
         ${modulesHtml ? `<ul>${modulesHtml}</ul>` : ''}
       </section>
 
-      <section class="subject-resources">
-        <h3>Resources</h3>
-        <div id="subject-resources-list"></div>
-      </section>
+      <div class="subject-sections">
+        <section class="subject-schedule">
+          <h3>📅 Schedule</h3>
+          <div class="schedule-info">
+            <div><strong>Days:</strong> ${days || ''}</div>
+            <div><strong>Time:</strong> ${course.schedule || ''}</div>
+            <div><strong>Platform:</strong> ${course.platform || ''}</div>
+            <div><strong>Start Date:</strong> ${course.startDate || ''}</div>
+            ${course.classroomCode && course.classroomCode !== 'TBD' ? `<div><strong>Classroom Code:</strong> <code>${course.classroomCode}</code></div>` : ''}
+          </div>
+        </section>
 
-      <section class="subject-notes">
-        <h3>Notes</h3>
-        <div id="subject-notes-list"></div>
-      </section>
-
-      <div class="subtabs">
-        <button class="subtab active" data-panel="subject-schedule">Schedule</button>
-        ${course.meetingLink ? `
-          <a href="${course.meetingLink}" target="_blank" class="subtab join-meeting-tab">
-            🎥 Join Meeting
-          </a>
-        ` : `
-          <button class="subtab" data-panel="subject-meetings">Meeting Info</button>
-        `}
-      </div>
-      <div id="subject-schedule" class="subtab-panel" style="display:block;">
-        <div><strong>Days:</strong> ${days || ''}</div>
-        <div><strong>Time:</strong> ${course.schedule || ''}</div>
-        <div><strong>Platform:</strong> ${course.platform || ''}</div>
-        <div><strong>Start Date:</strong> ${course.startDate || ''}</div>
-        ${course.classroomCode && course.classroomCode !== 'TBD' ? `<div><strong>Classroom Code:</strong> <code>${course.classroomCode}</code></div>` : ''}
-      </div>
-      <div id="subject-meetings" class="subtab-panel">
-        ${meetingsHtml}
+        <section class="subject-quick-links">
+          <h3>🔗 Quick Links</h3>
+          ${quickLinksHtml}
+        </section>
       </div>
     </div>
   `;
 }
 
-function initSubjectSubtabs() {
-  document.addEventListener('click', function(e) {
-    const tab = e.target.closest('.subtab');
-    if (!tab) return;
-    e.preventDefault();
-    const panelId = tab.getAttribute('data-panel');
-    document.querySelectorAll('.subtab').forEach(b => b.classList.remove('active'));
-    tab.classList.add('active');
-    document.querySelectorAll('.subtab-panel').forEach(p => p.style.display = 'none');
-    const panel = document.getElementById(panelId);
-    if (panel) panel.style.display = 'block';
-  });
-}
+// Removed subtab functionality - no longer needed
 
 // Dashboard Upcoming renderers (empty until data provided)
 function renderDashboardUpcoming() {
@@ -546,7 +552,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Build navigation and handlers
   buildNavigationFromCourses();
   initializeNavigation();
-  initSubjectSubtabs();
   
   // Initialize dynamic schedules
   updateDashboardSchedules();

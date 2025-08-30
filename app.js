@@ -78,7 +78,7 @@ const courseData = {
     "name": "Innovation and IP Management",
     "instructors": ["Dr. Manu Kanchan", "Dr. Deepak Saxena"],
     "schedule": "1:30-3:00 PM",
-    "days": ["Saturday only"],
+    "days": ["Saturday"],
     "platform": "Google Classroom",
     "classroomCode": "zy3yovsw",
     "lmsLink": "https://iitjodhpur.futurense.com/course/view.php?id=218",
@@ -211,20 +211,29 @@ function initializeNavigation() {
   const sections = document.querySelectorAll('.section');
 
   document.addEventListener('click', function(e) {
-    const btn = e.target.closest('.nav__btn');
+    const btn = e.target.closest('.nav__btn, .nav-mobile__btn');
     if (!btn) return;
     e.preventDefault();
     e.stopPropagation();
 
-    // Active state
-    document.querySelectorAll('.nav__btn').forEach(b => b.classList.remove('active'));
+    // Active state for both desktop and mobile
+    document.querySelectorAll('.nav__btn, .nav-mobile__btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+
+    // Update corresponding button in other navigation
+    const subjectId = btn.getAttribute('data-subject');
+    const targetSection = btn.getAttribute('data-section');
+    
+    if (subjectId) {
+      // Update both desktop and mobile buttons
+      document.querySelectorAll(`[data-subject="${subjectId}"]`).forEach(b => b.classList.add('active'));
+    } else if (targetSection === 'dashboard') {
+      // Update both desktop and mobile dashboard buttons
+      document.querySelectorAll('[data-section="dashboard"]').forEach(b => b.classList.add('active'));
+    }
 
     // Hide all sections
     sections.forEach(section => section.classList.remove('active'));
-
-    const subjectId = btn.getAttribute('data-subject');
-    const targetSection = btn.getAttribute('data-section');
 
     if (subjectId) {
       const subjectEl = document.getElementById('subject');
